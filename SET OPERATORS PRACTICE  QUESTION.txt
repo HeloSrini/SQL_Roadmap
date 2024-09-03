@@ -1,0 +1,226 @@
+Sample table: Salesman
+
+salesman_id |    name    |   city   | commission 
+-------------+------------+----------+------------
+        5001 | James Hoog | New York |       0.15
+        5002 | Nail Knite | Paris    |       0.13
+        5005 | Pit Alex   | London   |       0.11
+        5006 | Mc Lyon    | Paris    |       0.14
+        5007 | Paul Adam  | Rome     |       0.13
+        5003 | Lauson Hen | San Jose |       0.12
+		
+Sample table: Customer
+
+CREATE TABLE CUST_SRP(
+CUSTOMER_ID 	NUMBER(5),
+CUST_NAME                VARCHAR2(18),
+CITY 		VARCHAR2(18),
+GRADE		NUMBER(10),
+SALESMAN_ID 	NUMBER(10)
+);
+
+
+INSERT INTO CUST_SRP VALUES(3002,'Nick Rimando','New York',100,5001);
+INSERT INTO CUST_SRP VALUES(3007,'Brad Davis','New York',200,5001);
+INSERT INTO CUST_SRP VALUES(3005,'Graham Zusi','California',200,5002);
+INSERT INTO CUST_SRP VALUES(3008,'Julian Green','London',300,5002);
+INSERT INTO CUST_SRP VALUES(3004 ,'Fabian Johnson','Paris',300,5006);
+INSERT INTO CUST_SRP VALUES(3009,'Geoff Cameron','Berlin',100,5003);
+INSERT INTO CUST_SRP VALUES(3003,'Jozy Altidor','Moscow',200,5007);
+INSERT INTO CUST_SRP (CUSTOMER_ID,CUST_NAME,CITY,SALESMAN_ID)
+VALUES(3001,'Brad Guzan','London',5005);
+
+
+
+customer_id |   cust_name    |    city    | grade | salesman_id 
+-------------+----------------+------------+-------+-------------
+        3002 | Nick Rimando   | New York   |   100 |        5001
+        3007 | Brad Davis     | New York   |   200 |        5001
+        3005 | Graham Zusi    | California |   200 |        5002
+        3008 | Julian Green   | London     |   300   |        5002
+        3004 | Fabian Johnson | Paris      |   300 |        5006
+        3009 | Geoff Cameron  | Berlin    |   100 |        5003
+        3003 | Jozy Altidor   | Moscow     |   200 |        5007
+        3001 | Brad Guzan     | London    |            |        5005
+
+Sample table: Orders
+
+ord_no      purch_amt   ord_date    customer_id  salesman_id
+----------  ----------  ----------  -----------  -----------
+70001       150.5       2012-10-05  3005         5002
+70009       270.65      2012-09-10  3001         5005
+70002       65.26       2012-10-05  3002         5001
+70004       110.5       2012-08-17  3009         5003
+70007       948.5       2012-09-10  3005         5002
+70005       2400.6      2012-07-27  3007         5001
+70008       5760        2012-09-10  3002         5001
+70010       1983.43     2012-10-10  3004         5006
+70003       2480.4      2012-10-10  3009         5003
+70012       250.45      2012-06-27  3008         5002
+70011       75.29       2012-08-17  3003         5007
+70013       3045.6      2012-04-25  3002         5001
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+					QUESTIONS
+
+
+1. From the following tables, write a  SQL query to find all salespeople and customers located in the city of London.
+ID	    name	                          column
+3001	Brad Guzan	    Customer
+3008	Julian Green	    Customer
+5005	Pit Alex	    	    Salesman
+
+QUERY
+
+SELECT CUSTOMER_ID "ID",CUST_NAME"C_NAME" FROM CUSTR_SRP
+WHERE CITY='LONDON'
+UNION
+SELECT SALESMAN_ID "ID",NAME "C_NAME" FROM SALESMAN_SRP
+WHERE CITY='LONDON';
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2. From the following tables, write a SQL query to find distinct salespeople and their cities. 
+Return salesperson ID and city.
+
+salesman_id	    city ?
+5001	    	New York
+5002	    	London
+5002	    	California
+5006	    	Paris
+
+QUERY
+
+SELECT SALESMAN_ID,CITY FROM CUSTR_SRP
+INTERSECT
+SELECT SALESMAN_ID,CITY FROM SALESMAN_SRP;
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3. From the following tables, write a SQL query to find all those salespeople and customers
+who are involved in the inventory management system.Return salesperson ID, customer ID.
+		
+salesman_id	customer_id
+5005		3001
+5007		3003
+5001		3007
+5002		3008
+
+QUERY:
+
+SELECT SALESMAN_ID,CUSTOMER_ID FROM CUSTR_SRP
+UNION
+SELECT SALESMAN_ID,CUSTOMER_ID FROM ORDERS_SRP;
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4. From the following table, write a SQL query to find the salespersons who generated 
+the largest and smallest orders on each date. 
+Return salesperson ID, name, order no., highest on/lowest on, order date.
+
+salesman_id	     name	   	ord_no	?column?		ord_date
+5001		James Hoog	70002	lowest on		2012-10-05
+5001		James Hoog	70005	highest on	2012-07-27
+5001		James Hoog	70005	lowest on		2012-07-27
+5001		James Hoog	70008	highest on	2012-09-10
+
+
+SELECT A.SALESMAN_ID,A.NAME,B.PURCH_AMT,B.ORD_NO,B.ORD_DATE,
+CASE WHEN PURCH_AMT > 1400  THEN 'HIGHEST_ON'
+            WHEN PURCH_AMT < 1400 THEN 'LOWEST_ON' END AS PURCHASE
+FROM SALESMAN_VIT A,ORDERS_VIT B
+WHERE A.SALESMAN_ID=B.SALESMAN_ID;
+
+12 Rows Updated.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+5. From the following tables, write a SQL query to find the salespeople who generated the largest and smallest orders on each date. 
+Sort the result-set on third field. Return salesperson ID, name, order no., highest on/lowest on, order date.
+
+salesman_id	name		ord_no		?column?			ord_date
+5002		Nail Knite		70001		highest on		2012-10-05
+5001		James Hoog	70002		lowest on			2012-10-05
+5003		Lauson Hen	70003		highest on		2012-10-10
+5003		Lauson Hen	70004		highest on		2012-08-17
+
+SELECT A.SALESMAN_ID,A.NAME,B.PURCH_AMT,B.ORD_NO,B.ORD_DATE,
+CASE WHEN PURCH_AMT > 1400 THEN 'HIGHEST_ON'
+            WHEN PURCH_AMT < 1400 THEN 'LOWEST_ON' END AS PURCHASE
+FROM SALESMAN_VIT A,ORDERS_VIT B
+WHERE A.SALESMAN_ID=B.SALESMAN_ID
+ORDER BY A.NAME,A.SALESMAN_ID;
+
+12 Rows Updated.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+6. From the following tables, write a SQL query to find those salespeople who live in the 
+same city where the customer lives as well as those who do not have customers in their cities by indicating 'NO MATCH'.
+Sort the result set on 2nd column (i.e. name) in descending order.
+ Return salesperson ID, name, customer name, commission.
+
+salesman_id	  Name		cust_name	           commission
+5005		Pit Alex	                   Julian Green		0.11
+5005		Pit Alex	                   Brad Guzan		0.11
+5007		Paul Adam	NO MATCH		0.13
+5002		Nail Knite	                  Fabian Johnson		0.13
+
+QUERY:
+
+SELECT S.salesman_id,name,cust_name,commission
+FROM SALESMAN_SRP S,CUSTR_SRP C
+WHERE S.salesman_id=C.salesman_id AND S.city=C.city
+UNION
+SELECT S.salesman_id,name,'NO MATCH' "cust_name",commission FROM SALESMAN_SRP S,CUSTR_SRP C
+WHERE S.salesman_id=C.salesman_id AND S.city != C.city
+ORDER BY name DESC
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+7. From the following tables, write a SQL query that appends strings to the selected fields,
+ indicating whether the city of any salesperson is matched with the city of any customer. 
+Return salesperson ID, name, city, MATCHED/NO MATCH.
+
+
+salesman_id	name		city		    ?column?
+  5005		Pit Alex	                    London		   MATCHED
+  5007		Paul Adam	Rome		   NO MATCH
+  5002		Nail Knite	                    Paris		   MATCHED
+  5006		Mc Lyon		Paris		   MATCHED
+  5003		Lauson Hen	San Jose	                       NO MATCH
+  5001		James Hoog	New York	                       MATCHED
+
+QUERY:
+
+SELECT A.SALESMAN_ID,A.NAME,B.CITY, 'MATCHING' "COLUMN"
+FROM SALESMAN_SRP A,CUSTR_SRP B
+WHERE A.SALESMAN_ID=B.SALESMAN_ID AND A.CITY=B.CITY
+UNION
+SELECT A.SALESMAN_ID,A.NAME,B.CITY, 'NOT_MATCHING' "COLUMN"
+FROM SALESMAN_SRP A,CUSTR_SRP B
+WHERE A.SALESMAN_ID=B.CUSTOMER_ID  AND A.CITY!=B.CITY
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+8. From the following table, write a SQL query to create a union of two queries that shows the 
+customer id, cities, and ratings of all customers. Those with a rating of 300 or greater 
+will have the words 'High Rating', while the others will have the words 'Low Rating'.
+
+
+customer_id	city		grade		      column
+3002		New York	                       100                               Low Rating
+3003		Moscow		200		Low Rating
+3004		Paris		300		High Rating
+3008		London		300		High Rating
+
+
+QUERY:
+
+SELECT CUSTOMER_ID,CUST_NAME,GRADE,'HIGH_RATING' RATINGS
+FROM CUSTR_SRP WHERE GRADE >= 300
+UNION 
+SELECT CUSTOMER_ID,CUST_NAME,GRADE,'LOW_RATING' RATINGS
+FROM CUSTR_SRP WHERE GRADE < 300;
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

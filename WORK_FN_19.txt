@@ -1,0 +1,1047 @@
+SQL*Plus: Release 10.1.0.4.2 - Production on Fri Jul 19 11:05:35 2024
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bit Production
+
+SQL> SELECT MONTHS_BETWEEN('19-JUN-24','01-JAN-24') FROM DUAL;
+
+MONTHS_BETWEEN('19-JUN-24','01-JAN-24')
+---------------------------------------
+                             5.58064516
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT ROUND(MONTHS_BETWEEN('19-JUN-24','01-JAN-24')) FROM DUAL
+SQL> /
+
+ROUND(MONTHS_BETWEEN('19-JUN-24','01-JAN-24'))
+----------------------------------------------
+                                             6
+
+SQL> SELECT NEXT_DAY('19-JUL-24','FRI')FROM DUAL;
+
+NEXT_DAY(
+---------
+26-JUL-24
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LAST_DAY('01-FEB-24')FROM DUAL
+SQL> /
+
+LAST_DAY(
+---------
+29-FEB-24
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LAST_DAY('01-JUL-24')FROM DUAL
+SQL> /
+
+LAST_DAY(
+---------
+31-JUL-24
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LAST_DAY('01-DEC-24')FROM DUAL
+SQL> /
+
+LAST_DAY(
+---------
+31-DEC-24
+
+SQL> SELECT * FROM DEPARTEMENT;
+SELECT * FROM DEPARTEMENT
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM PERSONS
+SQL> /
+
+        ID
+----------
+LASTNAME
+--------------------------------------------------------------------------------
+FIRSTNAME
+--------------------------------------------------------------------------------
+       AGE
+----------
+        12
+kumar
+sasi
+        39
+
+
+        ID
+----------
+LASTNAME
+--------------------------------------------------------------------------------
+FIRSTNAME
+--------------------------------------------------------------------------------
+       AGE
+----------
+        14
+velu
+raja
+        35
+
+
+        ID
+----------
+LASTNAME
+--------------------------------------------------------------------------------
+FIRSTNAME
+--------------------------------------------------------------------------------
+       AGE
+----------
+        16
+kandan
+mani
+        45
+
+
+        ID
+----------
+LASTNAME
+--------------------------------------------------------------------------------
+FIRSTNAME
+--------------------------------------------------------------------------------
+       AGE
+----------
+        18
+maran
+dhana
+        50
+
+
+        ID
+----------
+LASTNAME
+--------------------------------------------------------------------------------
+FIRSTNAME
+--------------------------------------------------------------------------------
+       AGE
+----------
+        20
+guru
+kumara
+        55
+
+
+SQL> SET LINESIZE 160
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM PERSONS
+SQL> 
+SQL> /
+
+        ID
+----------
+LASTNAME
+------------------------------------------------------------------------------------------------------
+FIRSTNAME
+------------------------------------------------------------------------------------------------------
+       AGE
+----------
+        12
+kumar
+sasi
+        39
+
+
+        ID
+----------
+LASTNAME
+------------------------------------------------------------------------------------------------------
+FIRSTNAME
+------------------------------------------------------------------------------------------------------
+       AGE
+----------
+        14
+velu
+raja
+        35
+
+
+        ID
+----------
+LASTNAME
+------------------------------------------------------------------------------------------------------
+FIRSTNAME
+------------------------------------------------------------------------------------------------------
+       AGE
+----------
+        16
+kandan
+mani
+        45
+
+
+        ID
+----------
+LASTNAME
+------------------------------------------------------------------------------------------------------
+FIRSTNAME
+------------------------------------------------------------------------------------------------------
+       AGE
+----------
+        18
+maran
+dhana
+        50
+
+
+        ID
+----------
+LASTNAME
+------------------------------------------------------------------------------------------------------
+FIRSTNAME
+------------------------------------------------------------------------------------------------------
+       AGE
+----------
+        20
+guru
+kumara
+        55
+
+
+SQL> SET LINESIZE 160,
+SP2-0268: linesize option not a valid number
+SQL>  SET LINESIZE 160;
+SQL> SELECT * FROM PERSONS;
+
+        ID
+----------
+LASTNAME
+------------------------------------------------------------------------------------------------------
+FIRSTNAME
+------------------------------------------------------------------------------------------------------
+       AGE
+----------
+        12
+kumar
+sasi
+        39
+
+
+        ID
+----------
+LASTNAME
+------------------------------------------------------------------------------------------------------
+FIRSTNAME
+------------------------------------------------------------------------------------------------------
+       AGE
+----------
+        14
+velu
+raja
+        35
+
+
+        ID
+----------
+LASTNAME
+------------------------------------------------------------------------------------------------------
+FIRSTNAME
+------------------------------------------------------------------------------------------------------
+       AGE
+----------
+        16
+kandan
+mani
+        45
+
+
+        ID
+----------
+LASTNAME
+------------------------------------------------------------------------------------------------------
+FIRSTNAME
+------------------------------------------------------------------------------------------------------
+       AGE
+----------
+        18
+maran
+dhana
+        50
+
+
+        ID
+----------
+LASTNAME
+------------------------------------------------------------------------------------------------------
+FIRSTNAME
+------------------------------------------------------------------------------------------------------
+       AGE
+----------
+        20
+guru
+kumara
+        55
+
+
+SQL> SELECT AGE FROM PERSONS;
+
+       AGE
+----------
+        39
+        35
+        45
+        50
+        55
+
+SQL> SELECT FIRSTNAME,MAX(AGE) FROM PERSONS GROUP BY FIRSTNAME ORDER BY 1;
+
+FIRSTNAME
+------------------------------------------------------------------------------------------------------
+  MAX(AGE)
+----------
+dhana
+        50
+
+kumara
+        55
+
+mani
+        45
+
+
+FIRSTNAME
+------------------------------------------------------------------------------------------------------
+  MAX(AGE)
+----------
+raja
+        35
+
+sasi
+        39
+
+
+SQL> SELECT MAX(AGE) FROM PERSONS;
+
+  MAX(AGE)
+----------
+        55
+
+SQL> SELECT * FROM PERSONS GROUP BY FIRSTNAME ORDER BY 1;
+SELECT * FROM PERSONS GROUP BY FIRSTNAME ORDER BY 1
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+SP2-0223: No lines in SQL buffer.
+SQL> /
+SP2-0103: Nothing in SQL buffer to run.
+SQL> 
+SQL> 
+SQL> SELECT * FROM PERSONS;
+
+        ID
+----------
+LASTNAME
+------------------------------------------------------------------------------------------------------
+FIRSTNAME
+------------------------------------------------------------------------------------------------------
+       AGE
+----------
+        12
+kumar
+sasi
+        39
+
+
+        ID
+----------
+LASTNAME
+------------------------------------------------------------------------------------------------------
+FIRSTNAME
+------------------------------------------------------------------------------------------------------
+       AGE
+----------
+        14
+velu
+raja
+        35
+
+
+        ID
+----------
+LASTNAME
+------------------------------------------------------------------------------------------------------
+FIRSTNAME
+------------------------------------------------------------------------------------------------------
+       AGE
+----------
+        16
+kandan
+mani
+        45
+
+
+        ID
+----------
+LASTNAME
+------------------------------------------------------------------------------------------------------
+FIRSTNAME
+------------------------------------------------------------------------------------------------------
+       AGE
+----------
+        18
+maran
+dhana
+        50
+
+
+        ID
+----------
+LASTNAME
+------------------------------------------------------------------------------------------------------
+FIRSTNAME
+------------------------------------------------------------------------------------------------------
+       AGE
+----------
+        20
+guru
+kumara
+        55
+
+
+SQL> SELECT AGE FROM PERSONS;
+
+       AGE
+----------
+        39
+        35
+        45
+        50
+        55
+
+SQL> SELECT AGE,CASE
+  2  /
+SELECT AGE,CASE
+              *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> 
+SQL> 
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT AGE FROM PERSONS ORDER BY AGE
+SQL> /
+
+       AGE
+----------
+        35
+        39
+        45
+        50
+        55
+
+SQL> SELECT AGE,
+  2  CASE
+  3  WHEN AGE < 40 THEN 'SMALLER'
+  4  WHEN AGE < 50 THEN 'BIGGER'
+  5  WHEN AGE < 60 THEN 'VERY BIGGER'
+  6  ELSE 'NO VALUE HERE'
+  7  END 'AGE CALCULATE'
+  8  FROM PERSONS;
+END 'AGE CALCULATE'
+    *
+ERROR at line 7:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT AGE,
+  2  CASE
+  3  WHEN AGE < 40 THEN 'SMALLER'
+  4  WHEN AGE < 50 THEN 'BIGGER'
+  5  WHEN AGE < 60 THEN 'VERY BIGGER'
+  6  ELSE 'NO VALUE HERE'
+  7  END "AGE CALCULATE"
+  8* FROM PERSONS
+SQL> /
+
+       AGE AGE CALCULATE
+---------- -------------
+        39 SMALLER
+        35 SMALLER
+        45 BIGGER
+        50 VERY BIGGER
+        55 VERY BIGGER
+
+SQL> 
+SQL> 
+SQL> CREATE TABLE MARKS
+  2  (
+  3  M1 NUMBER,
+  4  M2 NUMBER,
+  5  M3 NUMBER,
+  6  M4 NUMBER,
+  7  M5 NUMBER
+  8  );
+
+Table created.
+
+SQL> INSERT INTO MARKS VALUES (55);
+INSERT INTO MARKS VALUES (55)
+            *
+ERROR at line 1:
+ORA-00947: not enough values
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* INSERT INTO MARKS VALUES 50
+SQL> /
+INSERT INTO MARKS VALUES 50
+                         *
+ERROR at line 1:
+ORA-03001: unimplemented feature
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* INSERT INTO MARKS VALUES (50)
+SQL> /.
+INSERT INTO MARKS VALUES (50)
+            *
+ERROR at line 1:
+ORA-00947: not enough values
+
+
+SQL> ED'
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* INSERT INTO MARKS VALUES (50)
+SQL> /
+INSERT INTO MARKS VALUES (50)
+            *
+ERROR at line 1:
+ORA-00947: not enough values
+
+
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> INSERT INTO MARKS (M1) VALUES (55);
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* INSERT INTO MARKS (M2) VALUES (67)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* INSERT INTO MARKS (M2) VALUES (87)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* INSERT INTO MARKS (M2) VALUES (90)
+SQL> DAD
+SP2-0042: unknown command "DAD" - rest of line ignored.
+SQL> ED
+Wrote file afiedt.buf
+
+  1* INSERT INTO MARKS (M3) VALUES (90)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* INSERT INTO MARKS (M4) VALUES (13)
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* INSERT INTO MARKS (M5) VALUES (56)
+SQL> /
+
+1 row created.
+
+SQL> SELECT * FROM MARKS;
+
+        M1         M2         M3         M4         M5
+---------- ---------- ---------- ---------- ----------
+        55
+                   67
+                   87
+                              90
+                                         13
+                                                    56
+
+6 rows selected.
+
+SQL> SET LINESIZE 100;
+SQL> SELECT * FROM MARKS;
+
+        M1         M2         M3         M4         M5
+---------- ---------- ---------- ---------- ----------
+        55
+                   67
+                   87
+                              90
+                                         13
+                                                    56
+
+6 rows selected.
+
+SQL> SELECT M1,CASE
+  2  WHEN M1 < 60 THEN 'GRADE-D'
+  3  WHEN M2 < 80 THEN 'GRADE-B'
+  4  WHEN M3 <= 90 THEN 'GRADE-A'
+  5  WHEN M4 < 13
+  6  THEN 'FAIL'
+  7  WHEN M5 < 50 THEN 'TRY TO IMPROVE'
+  8  ELSE "WORK"
+  9  END "MARKS MODIFIED"
+ 10  FROM MARKS;
+ELSE "WORK"
+     *
+ERROR at line 8:
+ORA-00904: "WORK": invalid identifier
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT M1,CASE
+  2  WHEN M1 < 60 THEN 'GRADE-D'
+  3  WHEN M2 < 80 THEN 'GRADE-B'
+  4  WHEN M3 <= 90 THEN 'GRADE-A'
+  5  WHEN M4 < 13
+  6  THEN 'FAIL'
+  7  WHEN M5 < 50 THEN 'TRY TO IMPROVE'
+  8  ELSE 'WORKS'
+  9  END "MARKS MODIFIED"
+ 10* FROM MARKS
+SQL> /
+
+        M1 MARKS MODIFIED
+---------- --------------
+        55 GRADE-D
+           GRADE-B
+           WORKS
+           GRADE-A
+           WORKS
+           WORKS
+
+6 rows selected.
+
+SQL> SELECT M1,M3,M2 FROM MARKS;
+
+        M1         M3         M2
+---------- ---------- ----------
+        55
+                              67
+                              87
+                   90
+
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+SQL*Plus: Release 10.1.0.4.2 - Production on Fri Jul 19 10:21:29 2024
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bit Production
+
+SQL> CREATE TABLE ABCD
+  2  (
+  3  AB_ID NUMBER,
+  4  AB_NAME  VARCHAR2(10),
+  5  AB_DATE  DATE,
+  6  AB_CITY  VARCHAR2(10)
+  7  );
+CREATE TABLE ABCD
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  CREATE TABLE PY
+  2  (
+  3  AB_ID NUMBER,
+  4  AB_NAME  VARCHAR2(10),
+  5  AB_DATE  DATE,
+  6  AB_CITY  VARCHAR2(10)
+  7* )
+SQL> /
+
+Table created.
+
+SQL> DESC PY;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ AB_ID                                              NUMBER
+ AB_NAME                                            VARCHAR2(10)
+ AB_DATE                                            DATE
+ AB_CITY                                            VARCHAR2(10)
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO ALL PY
+  2  (11,'RAM','12-JUL-2003','CHENNAI');
+  3  (12,'SAM','13-JUN-2004','CHENNAI');
+  4  (13,'KARTHI','15-FEB-2005','CHENNAI');
+  5  (14,'VIMAL','19-AUG-2007','CHENNAI');
+  6* (15,'SHIVA','28-DEC-2008','CHENNAI');
+SQL> /
+INSERT INTO ALL PY
+            *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO ALL
+  2  PY(11,'RAM','12-JUL-2003','CHENNAI');
+  3  PY(12,'SAM','13-JUN-2004','CHENNAI');
+  4  PY(13,'KARTHI','15-FEB-2005','CHENNAI');
+  5  PY(14,'VIMAL','19-AUG-2007','CHENNAI');
+  6* PY(15,'SHIVA','28-DEC-2008','CHENNAI');
+SQL> /
+INSERT INTO ALL
+            *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO
+  2  PY(11,'RAM','12-JUL-2003','CHENNAI');
+  3  PY(12,'SAM','13-JUN-2004','CHENNAI');
+  4  PY(13,'KARTHI','15-FEB-2005','CHENNAI');
+  5  PY(14,'VIMAL','19-AUG-2007','CHENNAI');
+  6* PY(15,'SHIVA','28-DEC-2008','CHENNAI');
+SQL> /
+PY(11,'RAM','12-JUL-2003','CHENNAI');
+   *
+ERROR at line 2:
+ORA-00928: missing SELECT keyword
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO PY VALUES(11,'RAM','12-JUL-2003','CHENNAI');
+  2  PY(12,'SAM','13-JUN-2004','CHENNAI');
+  3  PY(13,'KARTHI','15-FEB-2005','CHENNAI');
+  4  PY(14,'VIMAL','19-AUG-2007','CHENNAI');
+  5* PY(15,'SHIVA','28-DEC-2008','CHENNAI');
+SQL> /
+INSERT INTO PY VALUES(11,'RAM','12-JUL-2003','CHENNAI');
+                                                       *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> 
+SQL> 
+SQL> 
+SQL> INSERT INTO PY VALUES(11,'RAM','12-JUL-2003','CHENNAI');
+
+1 row created.
+
+SQL> INSERT INTO PY VALUES(12,'SAM','13-JUN-2004','CHENNAI');
+
+1 row created.
+
+SQL> INSERT INTO PY VALUES(13,'KARTHI','15-FEB-2005','CHENNAI');
+
+1 row created.
+
+SQL> INSERT INTO PY VALUES(14,'VIMAL','19-AUG-2007','CHENNAI');
+
+1 row created.
+
+SQL> INSERT INTO PY VALUES(15,'SHIVA','28-DEC-2008','CHENNAI');
+
+1 row created.
+
+SQL> SELECT * FROM PY;
+
+     AB_ID AB_NAME                        AB_DATE
+---------- ------------------------------ ---------------
+AB_CITY
+------------------------------
+        11 RAM                            12-JUL-03
+CHENNAI
+
+        12 SAM                            13-JUN-04
+CHENNAI
+
+        13 KARTHI                         15-FEB-05
+CHENNAI
+
+
+     AB_ID AB_NAME                        AB_DATE
+---------- ------------------------------ ---------------
+AB_CITY
+------------------------------
+        14 VIMAL                          19-AUG-07
+CHENNAI
+
+        15 SHIVA                          28-DEC-08
+CHENNAI
+
+
+SQL> SELECT MONTHS_BETWEEN('12-JUL-03','19-AUG-07') FROM PY;
+
+MONTHS_BETWEEN('12-JUL-03','19-AUG-07')
+---------------------------------------
+                             -49.225806
+                             -49.225806
+                             -49.225806
+                             -49.225806
+                             -49.225806
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT ROUND(MONTHS_BETWEEN('12-JUL-03','19-AUG-07')) FROM PY
+SQL> /
+
+ROUND(MONTHS_BETWEEN('12-JUL-03','19-AUG-07'))
+----------------------------------------------
+                                           -49
+                                           -49
+                                           -49
+                                           -49
+                                           -49
+
+SQL> 
+SQL> 
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT ROUND(MONTHS_BETWEEN('12-JUL-07','19-AUG-03')) FROM PY
+SQL> /
+
+ROUND(MONTHS_BETWEEN('12-JUL-07','19-AUG-03'))
+----------------------------------------------
+                                            47
+                                            47
+                                            47
+                                            47
+                                            47
+
+SQL> SELECT TO_DATE('12-JUL-2024')-TO_DATE('19-AUG-03') FROM PY;
+
+TO_DATE('12-JUL-2024')-TO_DATE('19-AUG-03')
+-------------------------------------------
+                                       7633
+                                       7633
+                                       7633
+                                       7633
+                                       7633
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT TO_DATE('12-JUL-2024')-TO_DATE('19-AUG-03') FROM PY
+SQL> /
+
+TO_DATE('12-JUL-2024')-TO_DATE('19-AUG-03')
+-------------------------------------------
+                                       7633
+                                       7633
+                                       7633
+                                       7633
+                                       7633
+
+SQL> SELECT * FROMPY;
+SELECT * FROMPY
+         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM PY
+SQL> /
+
+     AB_ID AB_NAME                        AB_DATE
+---------- ------------------------------ ---------------
+AB_CITY
+------------------------------
+        11 RAM                            12-JUL-03
+CHENNAI
+
+        12 SAM                            13-JUN-04
+CHENNAI
+
+        13 KARTHI                         15-FEB-05
+CHENNAI
+
+
+     AB_ID AB_NAME                        AB_DATE
+---------- ------------------------------ ---------------
+AB_CITY
+------------------------------
+        14 VIMAL                          19-AUG-07
+CHENNAI
+
+        15 SHIVA                          28-DEC-08
+CHENNAI
+
+
+SQL> SELECT TO_DATE('12-JUL-2024')-TO_DATE('19-AUG-03') FROM PY WHERE AB_ID=11;
+
+TO_DATE('12-JUL-2024')-TO_DATE('19-AUG-03')
+-------------------------------------------
+                                       7633
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT ADD_MONTHS ('15-FEB-05') FROM PY;
+  2  /
+SELECT ADD_MONTHS ('15-FEB-05') FROM PY;
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments
+
+
+SQL> E
+SP2-0042: unknown command "E" - rest of line ignored.
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT ADD_MONTHS('12-JUL-03',2) FROM PY;
+SQL> /
+SELECT ADD_MONTHS('12-JUL-03',2) FROM PY;
+                                        *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT ADD_MONTHS('12-JUL-03',1) FROM PY;
+SQL> /
+SELECT ADD_MONTHS('12-JUL-03',1) FROM PY;
+                                        *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT ADD_MONTHS('19-JUL-2024') FROM DUAL;
+SQL> /
+SELECT ADD_MONTHS('19-JUL-2024') FROM DUAL;
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT ADD_MONTHS('19-JUL-2024',1) FROM DUAL;
+SQL> 
+SQL> /
+SELECT ADD_MONTHS('19-JUL-2024',1) FROM DUAL;
+                                            *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT ADD_MONTHS('19-JUL-2024',1) FROM DUAL
+SQL> /
+
+ADD_MONTHS('19-
+---------------
+19-AUG-24
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT ADD_MONTHS('19-JUL-2024',1) AS EDIFY FROM DUAL
+SQL> /
+
+EDIFY
+---------------
+19-AUG-24
+
+SQL> SELECT MONTHS_BETWEEN('19-JUN-2024','01-JAN-2010')/12 FROM DUAL;
+
+MONTHS_BETWEEN('19-JUN-2024','01-JAN-2010')/12
+----------------------------------------------
+                                    14.4650538
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT ROUND(MONTHS_BETWEEN('19-JUN-2024','01-JAN-2010'))/12 FROM DUAL
+SQL> /
+
+ROUND(MONTHS_BETWEEN('19-JUN-2024','01-JAN-2010'))/12
+
+
+	

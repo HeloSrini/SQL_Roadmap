@@ -1,0 +1,70 @@
+t_employees
+
+CREATE TABLE t_employees(
+ID 	NUMBER(10),
+Name         VARCHAR2(10),
+Department  VARCHAR2(15),
+Salary      NUMBER(10),
+Experience   NUMBER(10)
+);
+
+
+t2_employees
+
+CREATE TABLE t2_employees(
+ID 	NUMBER(10),
+Name         VARCHAR2(10),
+Department  VARCHAR2(15),
+Salary      NUMBER(10),
+Experience   NUMBER(10)
+);
+
+t_employees
+
+INSERT INTO t_employees VALUES(1,'Aakash','Development',72000,2);
+INSERT INTO t_employees VALUES(2,'Abhishek','Production',45000,1);
+INSERT INTO t_employees VALUES(3,'Pranav','HR',23000,2);
+INSERT INTO t_employees VALUES(4,'Shubham','Accounts',45000,1);
+INSERT INTO t_employees VALUES(5,'Sunil','Development',34000,4);
+INSERT INTO t_employees VALUES(6,'Bhushan','R&D',42000,1);
+INSERT INTO t_employees VALUES(7,'Paras','Marketing',74000,2);
+
+t2_employees
+
+INSERT INTO t2_employees VALUES(1,'Prashant ','RD',57000,1);
+INSERT INTO t2_employees VALUES(2,'Abhishek ','Production',45000,1);
+INSERT INTO t2_employees VALUES(3,'Gautam','Development',56000,4);
+INSERT INTO t2_employees VALUES(4,'Shubham','Accounts',57000,2);
+INSERT INTO t2_employees VALUES(5,'Rahul','Production',76000,4);
+INSERT INTO t2_employees VALUES(6,'Bhushan','RD',75000,2);
+INSERT INTO t2_employees VALUES(7,'Anand','Marketing',28000,1);
+
+UNION
+
+ SELECT *FROM t_employees UNION SELECT *FROM t2_employees;  
+
+UNION ALL
+
+SELECT *FROM t_employees UNION ALL SELECT *FROM t2_employees;  
+
+INTERSECT 
+
+SELECT *FROM t_employees INTERSECT  SELECT *FROM t2_employees;  
+
+MINUS
+
+SELECT *FROM t_employees MINUS  SELECT *FROM t2_employees;  
+
+
+
+
+
+
+
+
+
+
+
+
+
+

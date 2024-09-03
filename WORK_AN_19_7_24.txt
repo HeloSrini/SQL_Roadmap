@@ -1,0 +1,25 @@
+CREATE TABLE emp (
+  emp_no NUMBER,
+  name VARCHAR(50),
+  sal DECIMAL(10,2),
+  age NUMBER,
+);
+
+
+INSERT INTO emp_rd (emp_no, name, sal, age) VALUES
+( ),
+(2, 'Aditi', 60000.50, 30),
+(3, 'Aarav', 75000.75, 35),
+(4, 'Anjali', 45000.25, 28),
+(5, 'Chetan', 80000.00, 32),
+(6, 'Divya', 65000.00, 27),
+(7, 'Gaurav', 55000.50, 29),
+(8, 'Divya', 72000.75, 31),
+(9, 'Gaurav', 48000.25, 26),
+(10, 'Divya', 83000.00, 33);
+
+
+INSERT INTO emp_rd (emp_no, name, sal, age) values (7, 'Gaurav', 55000.50, 29);
+
+
+select name,sum(sal) from emp_rd group by name;

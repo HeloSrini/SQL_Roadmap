@@ -1,0 +1,189 @@
+SQL> CREATE SEQUENCE SEQL
+  2  START WITH 1
+  3  INCREMENT BY 2
+  4  MINVALUE1
+  5  MAXVALUE 3;
+MINVALUE1
+
+ERROR at line 4:
+ORA-00933: SQL command not properly ended
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  CREATE SEQUENCE SEQL
+  2  START WITH 1
+  3  INCREMENT BY 2
+  4  MINVALUE 1
+  5* MAXVALUE 3
+SQL> /
+
+Sequence created.
+
+SQL> SELECT SEQ1.NEXTVAL FROM DUAL;
+
+   NEXTVAL
+----------
+        10
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SEQ1.CURRVAL FROM DUAL
+SQL> /
+
+   CURRVAL
+----------
+        10
+
+SQL> DROPM SEQUENCE SEQ.1;
+SP2-0734: unknown command beginning "DROPM SEQU..." - rest 
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SEQ1.CURRVAL FROM DUAL
+SQL> 
+SQL> /
+
+   CURRVAL
+----------
+        10
+
+SQL> DROP SEQUENCE SEQ1;
+
+Sequence dropped.
+
+ 
+SQL> SELECT CEIL(MAXVALVE - MINVALUE)/ABS(INCREMENT) FROM D
+SELECT CEIL(MAXVALVE - MINVALUE)/ABS(INCREMENT) FROM DUAL
+                                     *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT CEIL(MAXVALVE - MINVALUE)/ABS(INCREMENT) FROM D
+  2  /
+SELECT CEIL(MAXVALVE - MINVALUE)/ABS(INCREMENT) FROM DUAL
+                                     
+
+SQL> CREATE TABLE H_D(
+  2  ID NUMBER(10),
+  3  NAME VARCHAR(10)
+  4  );
+
+Table created.
+
+SQL> 
+SQL> 
+SQL> CREATE SEQUENCE D_E;
+
+Sequence created.
+
+SQL> INSERT INTO H_D(D_E.NEXTVAL,'ARUN');
+INSERT INTO H_D(D_E.NEXTVAL,'ARUN')
+                            *
+ERROR at line 1:
+ORA-01747: invalid user.table.column, table.column, or colu
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* INSERT INTO H_D VALUES(D_E.NEXTVAL,'ARUN')
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* INSERT INTO H_D VALUES(D_E.NEXTVAL,'SRINI')
+SQL> /
+
+1 row created.
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* INSERT INTO H_D VALUES(D_E.NEXTVAL,'SAIRAM')
+SQL> /
+
+1 row created.
+
+SQL> SELECT * FROM E_D;
+SELECT * FROM E_D
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> SELECT * H_D;
+SELECT * H_D
+         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT *FROM H_D
+SQL> /
+
+        ID NAME
+---------- ------------------------------
+         1 ARUN
+         2 SRINI
+         3 SAIRAM
+
+SQL> 
+
+
+SEQUENCE ALTERED
+
+SQL> ALTER SEQUENCE dept_deptid_seq
+  2  INCREMENT BY 20
+  3  MAXVALUE 999999
+  4  NOCACHE
+  5  NOCYCLE;
+Sequence altered.
+
+DROP SEQUENCE
+
+SQL> 
+SQL> DROP SEQUENCE DEPT_DEPTID;
+
+Sequence dropped.
+
+SEQUENCE CREATTION 
+
+CREATE SEQUENCE SE_ID
+STARTS BY 12
+INCREMENT BY 15
+MAXVALUE 9999
+NOCACHE
+NOCYCLE;
+
+CREATE SEQUENCE SE_ID
+INCREMENT BY 10
+START WITH 120
+MAXVALUE 9999
+NOCACHE
+NOCYCLE;
+
+ALTER SEQUENCE SE_ID
+INCREMENT BY 20
+MAXVALUE 999999
+NOCACHE
+NOCYCLE;
+
+
+
+
+
+INDEX
+

@@ -1,0 +1,141 @@
+1.
+SELECT emp_name, basic_sal  FROM emp_srini 
+WHERE  basic_sal=(select MAX(a.basic_sal) salary FROM dept_srini b, emp_srini a 
+WHERE a.dept_id=b.dept_id and  b.dept_name b.dept_name='FINANCE') AND  dept_id=(select dept_id  
+FROM dept_srini WHERE dept_name='FINANCE') ;
+
+O/P
+
+EMP_NAME                                       BASIC_SAL
+----------------------        ----------------------------
+SRIDEVI                                            75000
+
+2.
+SELECT EMP_NAME,TO_CHAR(DOJ,'DD-MON-YYYY HH:MI:SS') "D_AND_T" FROM EMP_SRINI
+WHERE BASIC_SAL > (SELECT MAX(A.BASIC_SAL) FROM EMP_SRINI A,DEPT_SRINI B
+WHERE A.DEPT_ID=B.DEPT_ID AND DEPT_NAME='SALES');
+
+
+EMP_NAME                                      D_AND_T
+--------------------------------------------- ---------------------------------
+VISVANATHAN                            15-FEB-2010 12:00:00
+PANNER                                        25-NOV-2010 12:00:00
+
+3.
+UPDATE SALES_INV_LN_SRINI
+SET SIL_UNIT_PRICE = SIL_UNIT_PRICE + SIL_UNIT_PRICE *10/100
+WHERE SIL_INV_QTY > 35 AND SIL_INV_NO = (SELECT SIH_INV_NO FROM SALES_INV_HDR_SRINI WHERE
+SIH_CUST_ID= 'C1003');
+
+4 rows updated.
+
+4.
+UPDATE SALES_INV_HDR_SRINI
+SET SIH_CUST_ID ='C1004'
+WHERE TO_CHAR(SIH_INV_DATE,'MON')='FEB' AND SIH_CUST_ID='C1001';
+1 row updated.
+
+
+5. How would you update the Inv.Qty column of the Invoice Lines table
+to set Unit Price add 100 which customer in PUDUCHERRY.
+
+UPDATE SALES_INV_LN_SRINI
+SET  SIL_UNIT_PRICE = SIL_UNIT_PRICE + 100
+WHERE SIL_INV_NO = (SELECT SIH_INV_NO FROM SALES_INV_HDR_SRINI,CUST_MASTER_SRINI
+WHERE CUST_ID = SIH_CUST_ID AND CITY_NAME= 'PUDUCHERRY');
+
+5 rows updated.
+
+6. Need to remove  Invoice Lines which  Inv.Qty  greater then 38 in invoice 2324-002?
+
+DELETE FROM SALES_INV_LN_SRINI 
+WHERE SIL_INV_QTY > 38 AND SIL_INV_NO = 2324-002;
+
+O/P:
+4 ROWS DELETED
+
+7. Add  1 mark to science in student table who score grater then 90 in maths and neglate centum in science ?
+
+UPDATE STUD_SRINI
+SET SCIENCE = SCIENCE +1 
+WHERE MATHS > 90 AND SCIENCE BETWEEN 1 AND 99;
+
+5 rows updated.
+
+OR  
+
+UPDATE STUD_SRINI 
+SET SCIENCE = SCIENCE+1
+WHERE MATHS > 90 AND SCIENCE <100;
+
+5 rows updated.
+
+8. Add  3 mark to maths in student table who score grater then 80 in tamil and english  and neglate centum in maths ?
+
+UPDATE STUD_SRINI
+SET MATHS =MATHS +3 
+WHERE TAMIL > 80 AND ENGLISH > 80 AND MATHS < 100;  
+
+7 rows updated.
+
+OR 
+
+UPDATE STUD_SRINI
+SET MATHS = (DECODE(MATHS,97,MATHS+3,98,MATHS+2,99,MATHS+1,MATHS+3))
+WHERE TAMIL > 80
+AND ENGLISH > 80 AND MATHS < 100;
+
+ OR 
+
+UPDATE STUD_SRINI
+SET MATHS = ( CASE WHEN MATHS BETWEEN 1 AND 97 THEN MATHS + 3
+	                      WHEN MATHS = 98 THEN MATHS +2
+		  WHEN MATHS = 99 THEN MATHS +1 END)
+WHERE TAMIL > 80 AND ENGLISH > 80 AND MATHS !=100;
+
+7 rows updated.
+
+9. Add new column as status in student table and update status pass total mark 
+who score more then 400 others mention as fail ?
+
+ALTER TABLE STUD_SRINI 
+ADD STATUS VARCHAR2(5);
+
+Table altered.
+
+UPDATE STUD_SRINI 
+SET STATUS = CASE WHEN (TAMIL+ENGLISH+SCIENCE+MATHS+SOCIAL) > 400 
+THEN 'PASS' 
+ELSE 'FAIL' END;
+
+10. write query  who score  centum more then two subject?
+
+SELECT STUD_NAME FROM ( SELECT STUD_NAME,
+COUNT(DECODE(TAMIL,100,1,NULL))"T",
+COUNT(DECODE(ENGLISH,100,1,NULL))"E",
+COUNT(DECODE(MATHS,100,1,NULL))"M",
+COUNT(DECODE(SCIENCE,100,1,NULL))"S",
+COUNT(DECODE(SOCIAL,100,1,NULL))"SS"
+FROM STUD_SRINI
+GROUP BY STUD_NAME)
+WHERE (T+E+M+S+SS) > 2;
+
+OR 
+SELECT std_name, tamil+english+maths+science+social "NO OF CENTUM" FROM (SELECT std_name, COUNT(CASE WHEN tamil = 100 THEN 1 ELSE NUll END) tamil,
+		COUNT(CASE WHEN english = 100 THEN 1 ELSE NUll END) english,
+		COUNT(CASE WHEN maths = 100 THEN 1 ELSE NUll END) maths,
+		COUNT(CASE WHEN science = 100 THEN 1 ELSE NUll END) science,
+		COUNT(CASE WHEN social = 100 THEN 1 ELSE NUll END ) social
+FROM std_hp 
+GROUP BY std_name)
+WHERE tamil+english+maths+science+social > 2;
+
+
+
+
+
+
+
+
+
+

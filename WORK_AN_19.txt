@@ -1,0 +1,873 @@
+SQL*Plus: Release 10.1.0.4.2 - Production on Fri Jul 19 14:04:40 2024
+
+Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 12c Standard Edition Release 12.1.0.2.0 - 64bit Production
+
+SQL> SELECT * FROM DEPT;
+
+DEPT_ID                  DEPT_NAME                          AMOUNT
+------------------------ ------------------------------ ----------
+A1010                    TAMIL                               25000
+A1020                    MATHS                              350000
+A1030                    SOCIAL                             950000
+A1040                    CHEMISTRY                          170000
+
+SQL> ALTER TABLE DEPT ADD CONSTRAINT PRIMARY KEY(DEPT_ID);
+ALTER TABLE DEPT ADD CONSTRAINT PRIMARY KEY(DEPT_ID)
+                                           *
+ERROR at line 1:
+ORA-00902: invalid datatype
+
+
+SQL> 
+SQL> 
+SQL> CREATE TABLE ERP(
+  2  ERPID NUMBER PRIMARY KEY,
+  3  ERPNAME VARCHAR2(100),
+  4  ERPCITY VARCHAR2(100))
+  5  ;
+
+Table created.
+
+SQL> ALTER TABLE ERP DISABLE CONSTRAINT ERPID;
+ALTER TABLE ERP DISABLE CONSTRAINT ERPID
+*
+ERROR at line 1:
+ORA-02431: cannot disable constraint (ERPID) - no such constraint
+
+
+SQL> 
+SQL> 
+SQL> SELECT DECODE('SRINI','SRINI','TRUE,STRINGS ARE EQUAL','FALSE,STRINGS ARE NOT A E
+SELECT DECODE('SRINI','SRINI','TRUE,STRINGS ARE EQUAL','FALSE,STRINGS ARE NOT A EQUAL'
+                                                                                      
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DECODE('SRINI','SRINI','TRUE,STRINGS ARE EQUAL','FALSE,STRINGS ARE NOT A E
+  2* FROM DUAL;
+SQL> /
+FROM DUAL;
+         *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended
+
+
+SQL> EED
+SP2-0042: unknown command "EED" - rest of line ignored.
+SQL> E
+SP2-0042: unknown command "E" - rest of line ignored.
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DECODE('SRINI','SRINI','TRUE,STRINGS ARE EQUAL','FALSE,STRINGS ARE NOT A E
+  2* ROM DUAL
+SQL> /
+ROM DUAL
+    *
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DECODE('SRINI','SRINI','TRUE,STRINGS ARE EQUAL','FALSE,STRINGS ARE NOT A E
+  2* FROM DUAL
+SQL> /
+
+DECODE('SRINI','SRINI','TRUE,STRINGSAREEQUAL','FALSE,STRINGSARENOT
+------------------------------------------------------------------
+TRUE,STRINGS ARE EQUAL
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  SELECT DECODE('SRINI','sRINI','TRUE,STRINGS ARE EQUAL','FALSE,STRINGS ARE NOT A E
+  2* FROM DUAL
+SQL> /
+
+DECODE('SRINI','SRINI','TRUE,STRINGSAREEQUAL','FALSE,STRINGSARENOTAEQUAL')
+--------------------------------------------------------------------------------
+FALSE,STRINGS ARE NOT A EQUAL
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  SELECT DECODE('SRINI','sRINI','TRUE,STRINGS ARE EQUAL','FALSE,STRINGS ARE NOT A E
+  2* FROM DUAL
+SQL> /
+
+DECODE('SRINI','SRINI','TRUE,STRINGSAREEQUAL','FALSE,STRINGSARENOTAEQUAL')
+--------------------------------------------------------------------------------
+FALSE,STRINGS ARE NOT A EQUAL
+
+SQL> 
+SQL> 
+SQL> 
+SQL> SELECT TO_CHAR('13-SEP-24'),'DDTh MON YYY DAY') FROM DUAL;
+SELECT TO_CHAR('13-SEP-24'),'DDTh MON YYY DAY') FROM DUAL
+                                              *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT (TO_CHAR('13-SEP-24'),'DDTh MON YYY DAY') FROM DUAL
+SQL> /
+SELECT (TO_CHAR('13-SEP-24'),'DDTh MON YYY DAY') FROM DUAL
+                            *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT (TO_CHAR('13-SEP-24'),'DDTh MON YYY DAY')) FROM DUAL
+SQL> /
+SELECT (TO_CHAR('13-SEP-24'),'DDTh MON YYY DAY')) FROM DUAL
+                            *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT (TO_CHAR('13-SEP-24'),'DDTh MON YYYY DAY' ) FROM DUAL
+SQL> /
+SELECT (TO_CHAR('13-SEP-24'),'DDTh MON YYYY DAY' ) FROM DUAL
+                            *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT (TO_CHAR('13-SEP-24') 'DDTh MON YYYY DAY' ) FROM DUAL
+SQL> /
+SELECT (TO_CHAR('13-SEP-24') 'DDTh MON YYYY DAY' ) FROM DUAL
+                             *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT TO_CHAR('13-SEP-24' 'DDTh MON YYYY DAY' ) FROM DUAL
+SQL> /
+SELECT TO_CHAR('13-SEP-24' 'DDTh MON YYYY DAY' ) FROM DUAL
+                           *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT TO_CHAR ('13-SEP-24' ,'DDTh MON YYYY DAY' ) FROM DUAL
+SQL> /
+SELECT TO_CHAR ('13-SEP-24' ,'DDTh MON YYYY DAY' ) FROM DUAL
+                *
+ERROR at line 1:
+ORA-01722: invalid number
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT TO_DATE('13-SEP-24' ,'DDTh MON YYYY DAY' ) FROM DUAL
+SQL> /
+SELECT TO_DATE('13-SEP-24' ,'DDTh MON YYYY DAY' ) FROM DUAL
+               *
+ERROR at line 1:
+ORA-01840: input value not long enough for date format
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT  TO_CHAR(TO_DATE('13-SEP-24') ,'DDTh MON YYYY DAY' ) FROM DUAL
+SQL> /
+
+TO_CHAR(TO_DATE('13-SEP-24'),'DDTHMONYYYYDAY')
+--------------------------------------------------------------------------------
+13TH SEP 2024 FRIDAY
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT TO_DATE('13-SEP-24') ,'DDTh MON YYYY DAY' ) FROM DUAL
+SQL> /
+SELECT TO_DATE('13-SEP-24') ,'DDTh MON YYYY DAY' ) FROM DUAL
+                                                 *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT TO_DATE('13-SEP-24' ,'DDTh MON YYYY DAY' ) FROM DUAL
+SQL> /
+SELECT TO_DATE('13-SEP-24' ,'DDTh MON YYYY DAY' ) FROM DUAL
+               *
+ERROR at line 1:
+ORA-01840: input value not long enough for date format
+
+
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> SELECT SYSDATE FROM DUAL;
+
+SYSDATE
+---------------
+19-JUL-24
+
+SQL> SELECT SYSDATE('DD-MOMN-RR','HH:M1:SS' AM);
+SELECT SYSDATE('DD-MOMN-RR','HH:M1:SS' AM)
+              *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SYSDATE('DD-MOMN-RR','HH:M1:SS' AM) FROM DUAL;
+  2  /
+SELECT SYSDATE('DD-MOMN-RR','HH:M1:SS' AM) FROM DUAL;
+              *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SYSDATE('DD-MOMN-RR','HH:M1:SS' AM) FROM DUAL;
+SQL> /
+SELECT SYSDATE('DD-MOMN-RR','HH:M1:SS' AM) FROM DUAL;
+              *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT SYSDATE FROM DUAL;
+
+SYSDATE
+---------------
+19-JUL-24
+
+SQL> 
+SQL> 
+SQL> 
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SYSDATE FROM DUAL
+SQL> 
+SQL> /
+
+SYSDATE
+---------------
+19-JUL-24
+
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> SELECT * FROM EMPS;
+
+     EMPID EMPNAME                            SALARY         DA        HRA
+---------- ------------------------------ ---------- ---------- ----------
+       CCA         PF        PPF CROSS_SALARY TOTAL_DEDUCE NET_SALARY
+---------- ---------- ---------- ------------ ------------ ----------
+        11 arun                                24001     960.04     600.03
+    480.02     120.01     360.02
+
+        22 vignesh                             25001    1000.04     625.03
+    500.02     125.01     375.02
+
+        33 msg                                 23001     920.04     575.03
+    460.02     115.01     345.02
+
+
+     EMPID EMPNAME                            SALARY         DA        HRA
+---------- ------------------------------ ---------- ---------- ----------
+       CCA         PF        PPF CROSS_SALARY TOTAL_DEDUCE NET_SALARY
+---------- ---------- ---------- ------------ ------------ ----------
+        22 vignesh                             25001
+
+
+        33 msg                                 23001
+
+
+        44 GUNA                                22001
+
+
+
+6 rows selected.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> AGGREGATE FUNCTIONS
+SP2-0734: unknown command beginning "AGGREGATE ..." - rest of line ignored.
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> SELECT SALARY FROM EMPS;
+
+    SALARY
+----------
+     24001
+     25001
+     23001
+     25001
+     23001
+     22001
+
+6 rows selected.
+
+SQL> SELECT COUNT(*) FROM EMPS;
+
+  COUNT(*)
+----------
+         6
+
+SQL> SELECT COUNT(SALARY) FROM EMPS;
+
+COUNT(SALARY)
+-------------
+            6
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT MAX(SALARY) FROM EMPS
+SQL> /
+
+MAX(SALARY)
+-----------
+      25001
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT MIN(SALARY) FROM EMPS
+SQL> /
+
+MIN(SALARY)
+-----------
+      22001
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT SUM(SALARY) FROM EMPS
+SQL> /
+
+SUM(SALARY)
+-----------
+     142006
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT AVG (SALARY) FROM EMPS
+SQL> /
+
+AVG(SALARY)
+-----------
+ 23667.6667
+
+SQL> DESC EMPS;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                              NUMBER
+ EMPNAME                                            VARCHAR2(10)
+ SALARY                                             NUMBER(7,2)
+ DA                                                 NUMBER(7,2)
+ HRA                                                NUMBER(7,2)
+ CCA                                                NUMBER(7,2)
+ PF                                                 NUMBER(7,2)
+ PPF                                                NUMBER(7,2)
+ CROSS_SALARY                                       NUMBER(7,2)
+ TOTAL_DEDUCE                                       NUMBER(7,2)
+ NET_SALARY                                         NUMBER(7,2)
+
+SQL> SELECT EMPNAME,MAX(SALARY) FROM EMPS;
+SELECT EMPNAME,MAX(SALARY) FROM EMPS
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT EMPNAME,MAX(SALARY) GROUP EMPNAME FROM EMPS
+SQL> /
+SELECT EMPNAME,MAX(SALARY) GROUP EMPNAME FROM EMPS
+                           *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT EMPID ,MAX(SALARY) GROUP EMPID FROM EMPS
+SQL> /
+SELECT EMPID ,MAX(SALARY) GROUP EMPID FROM EMPS
+                          *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT EMPID,MAX(SALARY) FROM EMPS
+SQL> /
+SELECT EMPID,MAX(SALARY) FROM EMPS
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT MAX(SALARY) FROM EMPS
+SQL> /
+
+MAX(SALARY)
+-----------
+      25001
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* S
+SQL> ./
+SP2-0042: unknown command "./" - rest of line ignored.
+SQL> ///
+S
+*
+ERROR at line 1:
+ORA-00900: invalid SQL statement
+
+
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> SELECT * FROM DEPARTEMENTS;
+SELECT * FROM DEPARTEMENTS
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> SELECT * FROM PERSONS;
+
+        ID
+----------
+LASTNAME
+--------------------------------------------------------------------------------
+FIRSTNAME
+--------------------------------------------------------------------------------
+       AGE
+----------
+        12
+kumar
+sasi
+        39
+
+
+        ID
+----------
+LASTNAME
+--------------------------------------------------------------------------------
+FIRSTNAME
+--------------------------------------------------------------------------------
+       AGE
+----------
+        14
+velu
+raja
+        35
+
+
+        ID
+----------
+LASTNAME
+--------------------------------------------------------------------------------
+FIRSTNAME
+--------------------------------------------------------------------------------
+       AGE
+----------
+        16
+kandan
+mani
+        45
+
+
+        ID
+----------
+LASTNAME
+--------------------------------------------------------------------------------
+FIRSTNAME
+--------------------------------------------------------------------------------
+       AGE
+----------
+        18
+maran
+dhana
+        50
+
+
+        ID
+----------
+LASTNAME
+--------------------------------------------------------------------------------
+FIRSTNAME
+--------------------------------------------------------------------------------
+       AGE
+----------
+        20
+guru
+kumara
+        55
+
+
+SQL> SELECT AGE FROM PERSONS;
+
+       AGE
+----------
+        39
+        35
+        45
+        50
+        55
+
+SQL> SELECT * FROM EMP_DESC;
+
+EMP_DEPT_ID         EMP_ID EMP_NAME           EMP_SALARY EMP_JOIN_DATE
+--------------- ---------- ------------------ ---------- ---------------
+EMPDOB
+---------------
+RND                   1007 VICKY                   40000 12-MAR-21
+28-AUG-02
+
+SCM                   1001 ARUN                    40000 28-AUG-21
+28-AUG-02
+
+PMF                   1002 KEYAN                   30000 12-DEC-20
+30-DEC-00
+
+
+EMP_DEPT_ID         EMP_ID EMP_NAME           EMP_SALARY EMP_JOIN_DATE
+--------------- ---------- ------------------ ---------- ---------------
+EMPDOB
+---------------
+HRM                   1003 HEMA                    40000 22-JUL-22
+18-SEP-00
+
+DEV                   1004 SAKTHI                  45000 28-AUG-23
+28-AUG-02
+
+R                     1005 DHINA                   30000 30-DEC-23
+29-DEC-02
+
+
+EMP_DEPT_ID         EMP_ID EMP_NAME           EMP_SALARY EMP_JOIN_DATE
+--------------- ---------- ------------------ ---------- ---------------
+EMPDOB
+---------------
+DEV                   1006 HARI                    40000 28-JUL-24
+28-MAR-02
+
+
+7 rows selected.
+
+SQL> SELECT EMP_D,COUNT(SALARY) GROUP BY SALARY FROM EMP_DESC;
+SELECT EMP_D,COUNT(SALARY) GROUP BY SALARY FROM EMP_DESC
+                           *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT EMPID,EMPNAME,SALARY FROM EMP_DESC;
+SQL> /
+SELECT EMPID,EMPNAME,SALARY FROM EMP_DESC;
+                                         *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT EMPID,EMPNAME,SALARY FROM EMP_DESC
+SQL> /
+SELECT EMPID,EMPNAME,SALARY FROM EMP_DESC
+                     *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier
+
+
+SQL> DESC EMP_DESC;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_DEPT_ID                                        VARCHAR2(5)
+ EMP_ID                                    NOT NULL NUMBER(5)
+ EMP_NAME                                           VARCHAR2(6)
+ EMP_SALARY                                NOT NULL NUMBER(8,2)
+ EMP_JOIN_DATE                                      DATE
+ EMPDOB                                    NOT NULL DATE
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT EMP_ID,EMP_NAME,EMP_SALARY FROM EMP_DESC
+SQL> /
+
+    EMP_ID EMP_NAME           EMP_SALARY
+---------- ------------------ ----------
+      1007 VICKY                   40000
+      1001 ARUN                    40000
+      1002 KEYAN                   30000
+      1003 HEMA                    40000
+      1004 SAKTHI                  45000
+      1005 DHINA                   30000
+      1006 HARI                    40000
+
+7 rows selected.
+
+SQL> SELECT EMPID,COUNT(SALARY)GROUP BY SALARY FROM EMP_DESC;
+SELECT EMPID,COUNT(SALARY)GROUP BY SALARY FROM EMP_DESC
+                          *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT EMPID,EMPNAME GROUP BY SALARY FROM EMP_DESC
+SQL> /
+SELECT EMPID,EMPNAME GROUP BY SALARY FROM EMP_DESC
+                     *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT EMPID,EMPNAME  FROM EMP_DESC GROUP BY SALARY
+SQL> /
+SELECT EMPID,EMPNAME  FROM EMP_DESC GROUP BY SALARY
+                                             *
+ERROR at line 1:
+ORA-00904: "SALARY": invalid identifier
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT EMPID,EMPNAME  FROM EMP_DESC GROUP BY EMP_SALARY
+SQL> /
+SELECT EMPID,EMPNAME  FROM EMP_DESC GROUP BY EMP_SALARY
+             *
+ERROR at line 1:
+ORA-00904: "EMPNAME": invalid identifier
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT EMP_DEPT_ID,EMP_NAME  FROM EMP_DESC GROUP BY EMP_SALARY
+SQL> /
+SELECT EMP_DEPT_ID,EMP_NAME  FROM EMP_DESC GROUP BY EMP_SALARY
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT EMP_NAME,SUM(EMP_SALARY) FROM EMP_DESC GROUP BY EMP_NAME
+  2  /
+
+EMP_NAME           SUM(EMP_SALARY)
+------------------ ---------------
+HEMA                         40000
+KEYAN                        30000
+HARI                         40000
+VICKY                        40000
+SAKTHI                       45000
+DHINA                        30000
+ARUN                         40000
+
+7 rows selected.
+
+SQL> SELECT * FROM EMP_DESC;
+
+EMP_DEPT_ID         EMP_ID EMP_NAME           EMP_SALARY EMP_JOIN_DATE
+--------------- ---------- ------------------ ---------- ---------------
+EMPDOB
+---------------
+RND                   1007 VICKY                   40000 12-MAR-21
+28-AUG-02
+
+SCM                   1001 ARUN                    40000 28-AUG-21
+28-AUG-02
+
+PMF                   1002 KEYAN                   30000 12-DEC-20
+30-DEC-00
+
+
+EMP_DEPT_ID         EMP_ID EMP_NAME           EMP_SALARY EMP_JOIN_DATE
+--------------- ---------- ------------------ ---------- ---------------
+EMPDOB
+---------------
+HRM                   1003 HEMA                    40000 22-JUL-22
+18-SEP-00
+
+DEV                   1004 SAKTHI                  45000 28-AUG-23
+28-AUG-02
+
+R                     1005 DHINA                   30000 30-DEC-23
+29-DEC-02
+
+
+EMP_DEPT_ID         EMP_ID EMP_NAME           EMP_SALARY EMP_JOIN_DATE
+--------------- ---------- ------------------ ---------- ---------------
+EMPDOB
+---------------
+DEV                   1006 HARI                    40000 28-JUL-24
+28-MAR-02
+
+
+7 rows selected.
+
+SQL> CREATE TABLE student (
+  2    name VARCHAR(50),
+  3    year INT,
+  4    subject VARCHAR(50)
+  5  );
+CREATE TABLE student (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  CREATE TABLE student_PER (
+  2    name VARCHAR(50),
+  3    year INT,
+  4    subject VARCHAR(50)
+  5* )
+SQL> /
+
+Table created.
+
+SQL> INSERT INTO student (name, year, subject) VALUES
+  2  ('Alice', 1, 'Mathematics'),
+  3  ('Bob', 2, 'English'),
+  4  ('Charlie', 3, 'Science'),
+  5  ('David', 1, 'Mathematics'),
+  6  ('Emily', 2, 'English'),
+  7  ('Frank', 3, 'Science');
+('Alice', 1, 'Mathematics'),
+                           *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+SP2-0223: No lines in SQL buffer.
+SQL> ///
+SP2-0103: Nothing in SQL buffer to run.
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> 
+SQL> INSERT INTO student (name, year, subject) VALUES
+  2  ('Alice', 1, 'Mathematics');
+INSERT INTO student (name, year, subject) VALUES
+                                 *
+ERROR at line 1:
+ORA-00904: "SUBJECT": invalid identifier
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  INSERT INTO student (name, year, subject) VALUES
+  2* ('Alice', 1, 'Mathematics')
+SQL> ;
+  1  INSERT INTO student (name, year, subject) VALUES
+  2* ('Alice', 1, 'Mathematics')
+SQL> ;
+  1  INSERT INTO student (name, year, subject) VALUES
+  2* ('Alice', 1, 'Mathematics')
+SQL> /
+INSERT INTO student (name, year, subject) VALUES
+                                 *
+ERROR at line 1:
+ORA-00904: "SUBJECT": invalid identifier
+
+
+SQL> 
+SQL> 
+SQL> INSERT INTO STUDENT(NAME,YEAR,SUBJECT) values ('alice',1,'maths');
+INSERT INTO STUDENT(NAME,YEAR,SUBJECT) values ('alice',1,'maths')
+                              *
+ERROR at line 1:
+ORA-00904: "SUBJECT": invalid identifier
+
+
+SQL> 
+SQL> 
+SQL> 

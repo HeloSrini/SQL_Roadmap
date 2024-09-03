@@ -1,0 +1,98 @@
+Basic Date Functions
+
+1.Retrieve the current date and time.
+SQL> SELECT TO_CHAR(SYSDATE, 'HH:MI:SS AM DAY') FROM DUAL;
+
+2.Retrieve the year from the DOB of all employees.
+SQL> SELECT EMP_NAME,TO_CHAR(DOB,'YY') FROM EMP_SRINI;
+
+3.Retrieve the month from the DOJ of all employees.
+SQL> SELECT EMP_NAME,TO_CHAR(DOB,'MON')  FROM EMP_SRINI;
+
+4.Retrieve the day from the DOB of all employees.
+SQL> SELECT EMP_NAME,TO_CHAR(DOB,'DD') FROM EMP_SRINI;
+
+5.Retrieve the names of employees who were born in the year 1985.
+SQL> SELECT EMP_NAME FROM EMP_SRINI WHERE TO_CHAR(DOB,'YY')=85;
+
+6.Retrieve the names of employees who joined in the month of February.
+SQL> SELECT EMP_NAME FROM EMP_SRINI WHERE TO_CHAR(DOJ,'MON')='FEB';
+
+7.Calculate the age of each employee based on their DOB.
+SQL > SELECT EMP_NAME,TRUNC(MONTHS_BETWEEN(SYSDATE,DOB)/12) AS AGE FROM EMP_SRINI
+
+8.Retrieve the names of employees who joined in the last 10 years.
+SQL> SELECT EMP_NAME FROM EMP_SRINI WHERE MONTHS_BETWEEN(SYSDATE,DOJ) < = 10
+
+9.Retrieve the names of employees who joined before 1st January 2010.
+SQL> SELECT EMP_NAME FROM EMP_SRINI WHERE DOJ < = TO_DATE('1-JAN-2010');
+
+10.Retrieve the names of employees who joined After 1st January 2010.
+SELECT ......
+EMP_NAME FROM EMP_SRINI WHERE DOJ > = TO_DATE('1-JAN-2010');
+
+Date Arithmetic
+
+11.Retrieve the names of employees who joined within the last 5 years.
+SQL> SELECT * FROM EMP_SRINI WHERE DOJ >=ADD_MONTHS(SYSDATE,-60);
+
+12.Retrieve the details of employees who will celebrate their birthdays in the next month.
+SQL> SELECT * FROM EMP_SRINI WHERE TO_CHAR(DOB,'MON-YY')='AUG-24';
+
+13.Calculate the number of days each employee has been with the company since their DOJ.
+SQL> SELECT EMP_NAME, DOJ, SYSDATE - DOJ AS DAYS_WITH_COMPANY
+           FROM EMP_SRINI;
+
+14.Retrieve the names of employees who will complete 10 years of service in the next year.
+
+15.Retrieve the names of employees who joined exactly on a weekend.
+SQL > SELECT EMP_NAME FROM EMP_SRINI WHERE TO_CHAR(DOJ,'DY') IN ('SAT','SUN');
+
+16.Calculate the number of months each employee has been with the company since their DOJ.
+SQL> SELECT EMP_NAME,DOJ,TRUNC(MONTHS_BETWEEN(SYSDATE,DOJ) AS MONTHS FROM EMP_SRINI;
+
+17.Retrieve the names of employees who have the same DOB and DOJ month.
+SQL> SELECT * FROM EMP_SRINI WHERE EXTRACT(MONTH FROM DOB)=EXTRACT(MONTH FROM DOJ);
+           SELECT * FROM EMP_SRINI WHERE TO_CHAR(DOB,'MM')=TO_CHAR(DOJ,'MM');
+
+18.Calculate the difference in years between the DOB and DOJ for each employee.
+SQL> SELECT * FROM EMP_SRINI WHERE ROUND(MONTHS_BETWEEN(DOB,DOJ)/12,2) FROM EMP_SRINI;
+
+Retrieve the names of employees who joined in a leap year.
+SQL> SELECT * FROM EMP_SRINI WHERE MOD(EXTRACT(MON FROM DOB),
+
+Retrieve the names of employees who joined in the first quarter of any year.
+Formatting and Extraction
+Retrieve the DOJ of all employees in 'YYYY-MM-DD' format.
+Retrieve the DOB of all employees in 'Month DD, YYYY' format.
+Retrieve the day name (e.g., Monday) of the DOJ for all employees.
+Retrieve the names of employees who joined on the 15th of any month.
+Retrieve the names of employees who joined on the last day of any month.
+Retrieve the week number of the year from the DOJ of all employees.
+Retrieve the quarter (1-4) from the DOJ of all employees.
+Retrieve the names of employees who joined in the second half of any year.
+Retrieve the names of employees who joined in the first 10 days of any month.
+Retrieve the names of employees who were born in the last 5 days of any month.
+Complex Date Queries
+Retrieve the names of employees who joined on the same date as their birthday.
+Retrieve the names of employees who joined within 6 months from their birthday.
+Calculate the number of working days each employee has been with the company since their DOJ (excluding weekends).
+Retrieve the names of employees who have a DOB on a public holiday.
+Retrieve the details of employees who joined during the summer season (June, July, August).
+Calculate the average age of employees in each department.
+Retrieve the names of employees who joined on a weekday (Monday to Friday).
+Retrieve the names of employees who were born on a weekend.
+Retrieve the names of employees who have the same DOB and DOJ.
+Retrieve the names of employees who have more than 20 years of service.
+Date Functions with Aggregations
+Calculate the total number of years of service of all employees combined.
+Retrieve the earliest DOJ of any employee.
+Retrieve the latest DOJ of any employee.
+Retrieve the average DOJ (average join date) of all employees.
+Retrieve the names of employees who joined on the first day of any month.
+Retrieve the names of employees who joined on the first working day (Monday) of any month.
+Retrieve the names of employees who have the same DOJ as the earliest join date.
+Retrieve the names of employees who have the same DOB as the latest birthday.
+Calculate the total number of days all employees have been with the company combined.
+Retrieve the details of employees who joined in the same month and year as the average join date of all employees.
+These questions cover various aspects of date functions, including extraction, formatting, arithmetic operations, and complex queries, providing a comprehensive set for practice.

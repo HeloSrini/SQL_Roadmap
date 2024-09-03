@@ -1,0 +1,30 @@
+1.Write an oracle SQL query to find employees who earn more in FINANCE department?
+
+2.Write  an oracle SQL query to get the date and time of employee joining who earn more in SALES department?
+
+3.How would you update the Inv.Qty column of the Invoice Lines table to set Unit Price increased by 10 percent
+for customer 'C1003' which item  have Inv.Qty  greater then 35?
+
+4. update customer 'C1001' to 'C1004' in Invoice Lines table which invoice done in feb ?
+
+5. How would you update the Inv.Qty column of the Invoice Lines table
+to set Unit Price add 100 which customer in PUDUCHERRY.
+
+6. Need to remove  Invoice Lines which  Inv.Qty  greater then 38 in invoice 2324-002?
+
+7. Add  1 mark to science in student table who score grater then 90 in maths and neglate centum in science ?
+
+8. Add  3 mark to maths in student table who score grater then 80 in tamil and english  and neglate centum in maths ?
+
+9. Add new column as status in student table and update status pass total mark 
+who score more then 400 others mention as fail ?
+
+10. write query who score  centum more then two subject?
+SELECT STUD_NAME,
+DECODE(TAMIL,100,1,NULL),
+COUNT(DECODE(ENGLISH,100,1,NULL)),
+COUNT(DECODE(SCIENCE,100,1,NULL)),
+COUNT(DECODE(MATHS,100,1,NULL)),
+COUNT(DECODE(SOCIAL,100,1,NULL))
+FROM STUD_SRINI
+GROUP BY STUD_NAME;

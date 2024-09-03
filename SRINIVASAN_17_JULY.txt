@@ -1,0 +1,143 @@
+ INSERT WITH NUMBERS
+---------------------------------
+
+INSERT INTO DEPT_SR VALUES('11','FIN',23456789.12); ---> POINT WILL BE INCLUDED (23456789.1)-->(10,2)
+
+SELECT LENGTH(1234523567.12) FROM DUAL; ----> 12(. WILL BE INCLUDED AS COUNT)
+
+--------------------------------
+
+INSERT WITH NUMBER
+
+INSERT INTO DEPT_SR VALUES(93453085.20); ---> ERROR at line 1: ORA-00947: not enough values
+
+INSERT INTO EMP_SR VALUES ('1','SRIDHAR','1234.789) ---> 1      SRIDHAR    3456.124
+--------------------------------
+
+BETWEEN
+
+SELECT DEPT_ID FROM DEPT_SR WHERE DEPT_ID BETWEEN 500 AND 503 ---> ANS:500,501,502,503
+
+---------------------------------
+
+SUBSTRING
+
+SELECT SUBSTR('WWW.GOOGLE.COM',5,6) FROM DEPT_SR;
+SELECT SUBSTR('WWW.METACO.COM',5,6) FROM DEPT_SR;
+SELECT SUBSTR('WWW.AMAZON.COM',5,6) FROM DEPT_SR;
+
+---------------------------------
+VALUE METHOD 
+
+  1* INSERT INTO EMP_SR VALUES(123,'HIIIII')
+SQL> /
+INSERT INTO EMP_SR VALUES(123,'HIIIII')
+            *
+ERROR at line 1:
+ORA-00947: not enough values
+
+------------------------------
+CREATION OF TABLE WITH PRIMARY_KEY
+
+CREATE TABLE EMP1(
+DEPT_ID	VARCHAR2(100)  PRIMARY KEY,
+DEPT_NAME	VARCHAR2(100)  NOT NULL,
+DEPT	VARCHAR2(8)
+);
+
+Table created.
+-------------------------
+
+ADDRESS METHOD 
+
+SQL> INSERT INTO EMP_SR(EMP_ID,EMP_NAME,SALARY,SITE)VALUES('1000','MOHAN');
+INSERT INTO EMP_SR(EMP_ID,EMP_NAME,SALARY,SITE)VALUES('1000','MOHAN')
+                                               *
+ERROR at line 1:
+ORA-00947: not enough values
+-----------------------
+
+CREATE TABLE WITH COLUMN WISE WITH FOREIGN_KEY
+
+SQL> CREATE TABLE HELO( 
+  2  EMPID  NUMBER(10) NOT NULL,
+  3  DEPTID VARCHAR2(10) ,FOREIGN KEY(DEPTID) REFERENCES EMP_AB(DEPT_ID),
+  4  SAL  NUMBER(8,2)
+  5  );
+
+Table created.
+------------------------
+
+CREATE TABLE WITH TABLE WISE WITH F_K USING CONSTRAINT NAME 
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  CREATE TABLE NEW_EP (
+  2    E_ID NUMBER(6) NOT NULL,
+  3    DEPT_ID VARCHAR2(6),
+  4    E_SAL NUMBER(8,2),
+  5    LOC VARCHAR2(15),
+  6    CONSTRAINT SAMPLE_FK  FOREIGN KEY (DEPT_ID) REFERENCES EMP_AB(DEPT_ID)
+  7* )
+SQL> /
+
+Table created.
+-----------------------------------
+
+CREATE TABLE WITHOUT A CONSTRAINT NAME 
+
+SQL> CREATE TABLE NEW_EP (
+  2  E_ID NUMBER(6) NOT NULL,
+  3  DEPT_ID VARCHAR2(6),
+  4  E_SAL NUMBER(8,2),
+  5  LOC VARCHAR2(15),
+  6  CONSTRAINT  FOREIGN KEY (DEPT_ID) REFERENCES EMP_AB(DEPT_ID);
+CONSTRAINT  FOREIGN KEY (DEPT_ID) REFERENCES EMP_AB(DEPT_ID)
+                        *
+ERROR at line 6:
+ORA-00902: invalid datatype
+
+-------------------------------------
+
+ADDING FOREIGN KEY IN EXISTING TABLE
+
+SQL> DESC EMP_SR;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                             VARCHAR2(5)
+ EMP_NAME                                           VARCHAR2(10)
+ SALARY                                             NUMBER(7,3)
+ SITE                                               VARCHAR2(25)
+
+SQL> ALTER TABLE EMP_SR MODIFY EMP_ID PRIMARY KEY;
+
+Table altered.
+
+-------------------------------------------------------------------------------
+
+REMOVING CONSTRAINT WITH TABLES
+
+SQL> CREATE TABLE SAM_RD(
+  2  EMPID NUMBER(10),
+  3  EMPNAME VARCHAR2(100),
+  4  EMPCITY VARCHAR2(50),
+  5  PIN  VARCHAR2(10),
+  6  CONSTRAINT SAM_PK PRIMARY KEY(EMPID));
+
+Table created.
+
+SQL> ALTER TABLE SAM_RD DROP CONSTRAINT SAM_PK;
+
+Table altered
+---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+

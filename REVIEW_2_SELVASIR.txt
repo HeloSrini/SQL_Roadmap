@@ -1,0 +1,53 @@
+INSERT INTO STUD_SRINI VALUES (1001,'ANAND','15-FEB-01','MALE',95,95,96,97,98);
+
+INSERT INTO STUD_SRINI VALUES (1002,'VIDYASAGAR','20-MAR-02','MALE',92,91,100,86,77);
+
+INSERT INTO STUD_SRINI VALUES (1003,'SAHISH','10-SEP-02','MALE',98,90,95,87,88);
+
+INSERT INTO STUD_SRINI VALUES (1004,'MOHAN','11-AUG-02','MALE',98,100,98,87,88);
+
+INSERT INTO STUD_SRINI VALUES (1005,'THANISH','12-MAY-02','MALE',90,98,90,87,100);
+
+INSERT INTO STUD_SRINI VALUES (1006,'SANA','11-APR-02','FEMALE',100,90,100,100,98);
+
+INSERT INTO STUD_SRINI VALUES (1007,'SHALINI','12-MAY-01','FEMALE',97,90,98,100,100);
+
+INSERT INTO STUD_SRINI VALUES (1008,'PRIYADARSHINI','16-JUN-02','FEMALE',99,99,100,100,99);
+
+INSERT INTO STUD_SRINI VALUES (1009,'AHMED','17-JUL-02','MALE',99,100,99,100,98);
+
+INSERT INTO STUD_SRINI VALUES (1010,'SHARMILA','18-AUG-02','FEMALE',100,89,96,98,90);
+
+INSERT INTO STUD_SRINI VALUES (1011,'SUGUNA','15-AUG-02','FEMALE',97,89,90,97,89);
+
+INSERT INTO STUD_SRINI VALUES (1012,'PARVATHI','16-FEB-02','FEMALE',50,55,45,56,76);
+
+INSERT INTO STUD_SRINI VALUES (1013,'SARAVANAN','17-JAN-01','MALE',70,76,67,89,77);
+
+
+SQL> SET PAGESIZE 5000;
+SQL> SET LINESIZE 5000;
+SQL> SELECT * FROM STUD_SRINI;
+
+    REG_NO STUD_NAME                                     DOB             SEX                                 TAMIL    ENGLISH    SCIENCE      MATHS     SOCIAL
+---------- --------------------------------------------- --------------- ------------------------------ ---------- ---------- ---------- ---------- ---
+      1001 ANAND                                         15-FEB-01       MALE                                   95         95         96         97         98
+      1002 VIDYASAGAR                                    20-MAR-02       MALE                                   92         91        100         86         77
+      1003 SAHISH                                        10-SEP-02       MALE                                   98         90         95         87         88
+      1004 MOHAN                                         11-AUG-02       MALE                                   98        100         98         87         88
+      1005 THANISH                                       12-MAY-02       MALE                                   90         98         90         87        100
+      1006 SANA                                          11-APR-02       FEMALE                                100         90        100        100         98
+      1007 SHALINI                                       12-MAY-01       FEMALE                                 97         90         98        100        100
+      1008 PRIYADARSHINI                                 16-JUN-02       FEMALE                                 99         99        100        100         99
+      1009 AHMED                                         17-JUL-02       MALE                                   99        100         99        100         98
+      1010 SHARMILA                                      18-AUG-02       FEMALE                                100         89         96         98         90
+      1011 SUGUNA                                        15-AUG-02       FEMALE                                 97         89         90         97         89
+      1012 PARVATHI                                      16-FEB-02       FEMALE                                 50         55         45         56         76
+      1013 SARAVANAN                                     17-JAN-01       MALE                                   70         76         67         89         77
+
+13 rows selected
+
+
+SELECT SEX, AVG(TAMIL) FROM STD_HP GROUP BY SEX;
+
+

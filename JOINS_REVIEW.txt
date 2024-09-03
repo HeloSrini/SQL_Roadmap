@@ -1,0 +1,126 @@
+1
+SELECT  a.sil_inv_no, b.sih_inv_date,
+                 b.sih_cust_id, c.cust_name,
+SUM((a. sil_inv_qty*a. sil_unit_price)) " gross salary",
+SUM((( a.sil_inv_qty* a.sil_unit_price/100)* a.sil_disc_pct)) " discount",
+SUM((( a.sil_inv_qty* a.sil_unit_price)- ((a.sil_inv_qty* a.sil_unit_price/100)* 
+                                                          a.sil_disc_pct))) "Net_amount" FROM 
+SALES_INV_LN_SRINI a , SALES_INV_HDR_SRINI b,CUST_MASTER_SRINI c
+WHERE  a. sil_inv_no=b. sih_inv_no and
+                 b. sih_cust_id=c. cust_id
+GROUP BY a.sil_inv_no, b.sih_inv_date,
+         b.sih_cust_id, c.cust_name ;
+
+
+2
+SELECT b.sih_cust_id, c.cust_name,
+SUM((a. sil_inv_qty*a. sil_unit_price)) " gross salary",
+SUM((( a.sil_inv_qty* a.sil_unit_price/100)* a.sil_disc_pct)) " discount",
+SUM((( a.sil_inv_qty* a.sil_unit_price)- ((a.sil_inv_qty* a.sil_unit_price/100)* 
+                                                          a.sil_disc_pct))) "Net_amount" FROM 
+SALES_INV_LN_SRINI a , SALES_INV_HDR_SRINI b,CUST_MASTER_SRINI c
+WHERE  a. sil_inv_no=b. sih_inv_no and
+                 b. sih_cust_id=c. cust_id
+GROUP BY b.sih_cust_id, c.cust_name ;
+
+
+
+a=10
+b=20
+
+a=&b
+b=&a
+
+ptr*a=null;
+
+
+
+3.
+SELECT c.cust_group,
+SUM((a. sil_inv_qty*a. sil_unit_price)) " gross salary",
+SUM((( a.sil_inv_qty* a.sil_unit_price/100)* a.sil_disc_pct)) " discount",
+SUM((( a.sil_inv_qty* a.sil_unit_price)- ((a.sil_inv_qty* a.sil_unit_price/100)* 
+                                                          a.sil_disc_pct))) "Net_amount" FROM 
+SALES_INV_LN_SRINI a , SALES_INV_HDR_SRINI b,CUST_MASTER_SRINI c
+WHERE  a. sil_inv_no=b. sih_inv_no and
+                 b. sih_cust_id=c. cust_id
+GROUP BY c.cust_group;
+
+4.
+SELECT c.city_name,
+SUM((a. sil_inv_qty*a. sil_unit_price)) " gross salary",
+SUM((( a.sil_inv_qty* a.sil_unit_price/100)* a.sil_disc_pct)) " discount",
+SUM((( a.sil_inv_qty* a.sil_unit_price)- ((a.sil_inv_qty* a.sil_unit_price/100)* 
+                                                          a.sil_disc_pct))) "Net_amount" FROM 
+SALES_INV_LN_SRINI a , SALES_INV_HDR_SRINI b,CUST_MASTER_SRINI c
+WHERE  a. sil_inv_no=b. sih_inv_no and
+                 b. sih_cust_id=c. cust_id
+GROUP BY  c.city_name;
+
+5.
+SELECT c.state_name,
+SUM((a. sil_inv_qty*a. sil_unit_price)) " gross salary",
+SUM((( a.sil_inv_qty* a.sil_unit_price/100)* a.sil_disc_pct)) " discount",
+SUM((( a.sil_inv_qty* a.sil_unit_price)- ((a.sil_inv_qty* a.sil_unit_price/100)* 
+                                                          a.sil_disc_pct))) "Net_amount" FROM 
+SALES_INV_LN_SRINI a , SALES_INV_HDR_SRINI b,CUST_MASTER_SRINI c
+WHERE  a. sil_inv_no=b. sih_inv_no and
+                 b. sih_cust_id=c. cust_id
+GROUP BY  c.state_name;
+
+6.
+SELECT 
+ b.sih_cust_id, c.cust_name,TO_CHAR(b. sih_inv_date,'mon-yy'),
+SUM((a. sil_inv_qty*a. sil_unit_price)) " gross salary",
+SUM((( a.sil_inv_qty* a.sil_unit_price/100)* a.sil_disc_pct)) " discouny",
+SUM((( a.sil_inv_qty* a.sil_unit_price)- ((a.sil_inv_qty* a.sil_unit_price/100)* 
+                                                          a.sil_disc_pct))) "netamount" FROM 
+SALES_INV_LN_SRINI a , SALES_INV_HDR_SRINI b,CUST_MASTER_SRINI c
+WHERE  a. sil_inv_no=b. sih_inv_no and
+b. sih_cust_id=c. cust_id
+GROUP BY b.sih_cust_id, c.cust_name,B.SIH_INV_DATE ;
+
+7.
+SELECT  c.cust_group,to_char(Sih_inv_date,'mon-yy'),
+SUM((a. sil_inv_qty*a. sil_unit_price)) " gross salary",
+SUM((( a.sil_inv_qty* a.sil_unit_price/100)* a.sil_disc_pct)) " discount",
+SUM((( a.sil_inv_qty* a.sil_unit_price)- ((a.sil_inv_qty* a.sil_unit_price/100)* 
+                                                          a.sil_disc_pct))) "Net_amount" FROM 
+SALES_INV_LN_SRINI a ,SALES_INV_HDR_SRINI b,CUST_MASTER_SRINI c
+WHERE  a. sil_inv_no=b. sih_inv_no and
+                 b. sih_cust_id=c. cust_id
+GROUP BY c.cust_group,to_char(Sih_inv_date,'mon-yy');
+
+8.
+SELECT c.city_name,to_char(Sih_inv_date,'mon-yy'),
+SUM((a. sil_inv_qty*a. sil_unit_price)) " gross salary",
+SUM((( a.sil_inv_qty* a.sil_unit_price/100)* a.sil_disc_pct)) " discount",
+SUM((( a.sil_inv_qty* a.sil_unit_price)- ((a.sil_inv_qty* a.sil_unit_price/100)* 
+                                                          a.sil_disc_pct))) "Net_amount" FROM 
+SALES_INV_LN_SRINI a , SALES_INV_HDR_SRINI b,CUST_MASTER_SRINI c
+WHERE  a. sil_inv_no=b. sih_inv_no and
+                 b. sih_cust_id=c. cust_id
+GROUP BY  c.city_name,b.Sih_inv_date;
+
+9.
+SELECT c.state_name,to_char(Sih_inv_date,'mon-yy'),
+SUM((a. sil_inv_qty*a. sil_unit_price)) " gross salary",
+SUM((( a.sil_inv_qty* a.sil_unit_price/100)* a.sil_disc_pct)) " discount",
+SUM((( a.sil_inv_qty* a.sil_unit_price)- ((a.sil_inv_qty* a.sil_unit_price/100)* 
+                                                          a.sil_disc_pct))) "Net_amount" FROM 
+SALES_INV_LN_SRINI a , SALES_INV_HDR_SRINI b,CUST_MASTER_SRINI c
+WHERE  a. sil_inv_no=b. sih_inv_no and
+                 b. sih_cust_id=c. cust_id
+GROUP BY  c.state_name,b.Sih_inv_date;
+
+10.
+SELECT  TO_CHAR(b. sih_inv_date,'mon-yy') as Month,COUNT(b.sih_inv_no)as Count,
+SUM((c. sil_inv_qty*c. sil_unit_price)) " gross salary",
+SUM((( c.sil_inv_qty* c.sil_unit_price/100)* c.sil_disc_pct)) " discount",
+SUM((( c.sil_inv_qty* c.sil_unit_price)- ((c.sil_inv_qty* c.sil_unit_price/100)* 
+                                                        		  c.sil_disc_pct))) "Net_amount"
+FROM CUST_MASTER_SRINI a, SALES_INV_HDR_SRINI b, SALES_INV_LN_SRINI c
+WHERE a.cust_id=b.sih_cust_id and
+            	b.sih_inv_no=c.sil_inv_no
+GROUP BY b. sih_inv_date;
+

@@ -1,0 +1,58 @@
+SQL> SELECT TO_NUMBER('50') + TO_NUMBER('50') FROM DUAL;
+
+TO_NUMBER('50')+TO_NUMBER('50')
+-------------------------------
+                            100
+
+SQL> SELECT LAST_DAY('21-JAN-16') FROM DUAL;
+
+LAST_DAY('21-JA
+---------------
+31-JAN-16
+
+SQL> SELECT RTRIM(ROADMAPITSOLUTION,'IT') FROM DUAL;
+SELECT RTRIM(ROADMAPITSOLUTION,'IT') FROM DUAL
+             *
+ERROR at line 1:
+ORA-00904: "ROADMAPITSOLUTION": invalid identifier
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT RTRIM('ROADMAPITSOLUTION','IT') FROM DUAL
+SQL> /
+
+RTRIM('ROADMAPITSOLUTION','IT')
+---------------------------------------------------
+ROADMAPITSOLUTION
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT LTRIM('MAPROADMAPITSOLUTION','MAP') FROM DUAL
+SQL> /
+
+LTRIM('MAPROADMAPITSOLUTION','MAP')
+---------------------------------------------------
+ROADMAPITSOLUTION
+
+SQL> SELECT SIGN(-100+26*-2+4-2) FROM DUAL;
+
+SIGN(-100+26*-2+4-2)
+--------------------
+                  -1
+
+SQL> SELECT LEAST('01-JUL-2015','01-DEC-2015') FROM DUAL;
+
+LEAST('01-JUL-2015','01-DEC-2015'
+---------------------------------
+01-DEC-2015
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT GREATEST('01-JUL-2015','01-DEC-2015') FROM DUAL
+SQL> /
+
+GREATEST('01-JUL-2015','01-DEC-20

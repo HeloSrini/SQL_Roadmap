@@ -1,0 +1,432 @@
+SQL> SELECT * FROM EMP_SRINI;
+
+     EMPID EMP_NAME                                      GENDER                         DOB             DOJ              BASIC_SAL    DEPT_ID DESIGNATION
+---------- --------------------------------------------- ------------------------------ --------------- --------------- ---------- ---------- ---------
+      2001 VISVANATHAN                                   MALE                           15-JAN-85       15-FEB-10           100000        100 VP,ADMIN
+      2002 GOPAL                                         MALE                           18-FEB-91       18-MAR-10            24000        100 SECRETARY,VP
+      2003 GANESH                                        MALE                           18-MAR-92       19-APR-10            65000        110 MANAGER,ADMIN
+      2004 SRIRAM                                        MALE                           18-APR-91       25-APR-10            25000        110 HR EXECUTIVE
+      2005 SRIDEVI                                       FEMALE                         20-MAR-89       10-MAY-10            75000        120 MANAGER,FINANCE
+      2006 BALA                                          MALE                           20-APR-86       15-MAY-10            45000        120 AP ACCOUNTANT
+      2007 KANNAN                                        MALE                           18-MAR-84       20-JUN-10            42500        120 AR ACCOUNTANT
+      2008 SHALINI                                       FEMALE                         18-JUL-83       25-JUN-10            37500        120 ACCOUNTS EXECUTIVE
+      2009 SNEHA                                         FEMALE                         23-MAY-84       27-JUL-10            35500        120 ACCOUNTS  EXECUTIVE
+      2010 AHMED                                         MALE                           10-JAN-89       10-SEP-10            75000        130 PURCHASE MANAGER
+      2011 SEKAR                                         MALE                           10-JAN-87       25-SEP-10            43000        130 BUYER
+      2012 DEVAN                                         MALE                           10-JAN-88       25-OCT-10            43000        130 BUYER
+      2013 BAJALI                                        MALE                           10-JAN-87       30-OCT-10            75000        140 SALES MANAGER
+      2014 NAVEEN                                        MALE                           18-JUL-86       05-NOV-10            35000        140 SALES PERSON
+      2015 VINAYAGAM                                     MALE                           10-JAN-83       15-NOV-10            37500        140 SALES PERSON
+      2016 PANNER                                        MALE                           10-SEP-84       25-NOV-10            85000        150 PRODUCTION MANAGER
+      2017 PREM                                          MALE                           10-DEC-84       30-NOV-10            25000        150 OPERATOR
+      2018 SURESH                                        MALE                           13-MAY-83       05-DEC-10            35000        150 OPERATOR
+
+18 rows selected.
+
+
+SELECT GENDER,EMP_NAME  FROM EMP_SRINI WHERE GENDER = 'MALE' GROUP BY GENDER,EMP_NAME
+
+
+GENDER       EMP_NAME
+------------ ---------------------------------------------
+MALE         SRIRAM
+MALE         BALA
+MALE         AHMED
+MALE         SEKAR
+MALE         VISVANATHAN
+MALE         GANESH
+MALE         DEVAN
+MALE         PANNER
+MALE         KANNAN
+MALE         BAJALI
+MALE         GOPAL
+MALE         NAVEEN
+MALE         VINAYAGAM
+MALE         PREM
+MALE         SURESH
+
+15 rows selected.
+
+SELECT EMP_NAME FROM EMP_SRINI WHERE GENDER ='FEMALE'
+
+
+EMP_NAME
+---------------------------------------------
+SRIDEVI
+SHALINI
+SNEHA
+
+SELECT EMP_NAME FROM EMP_SRINI WHERE GENDER='MALE';
+
+EMP_NAME
+---------------------------------------------
+VISVANATHAN
+GOPAL
+GANESH
+SRIRAM
+BALA
+KANNAN
+AHMED
+SEKAR
+DEVAN
+BAJALI
+NAVEEN
+VINAYAGAM
+PANNER
+PREM
+SURESH
+
+15 rows selected.
+
+SELECT EMP_NAME FROM EMP_SRINI WHERE BASIC_SAL > 50000;
+
+EMP_NAME
+---------------------------------------------
+VISVANATHAN
+GANESH
+SRIDEVI
+AHMED
+BAJALI
+PANNER
+
+6 rows selected.
+
+SELECT EMP_NAME,BASIC_SAL FROM EMP_SRINI WHERE BASIC_SAL > 50000
+
+EMP_NAME                                       BASIC_SAL
+--------------------------------------------- ----------
+VISVANATHAN                                       100000
+GANESH                                             65000
+SRIDEVI                                            75000
+AHMED                                              75000
+BAJALI                                             75000
+PANNER                                             85000
+
+
+SELECT * FROM EMP_SRINI;
+
+     EMPID EMP_NAME                                      GENDER                         DOB             DOJ              BASIC_SAL    DEPT_ID DESIGNATION
+---------- --------------------------------------------- ------------------------------ --------------- --------------- ---------- ---------- ---------
+      2001 VISVANATHAN                                   MALE                           15-JAN-85       15-FEB-10           100000        100 VP,ADMIN
+      2002 GOPAL                                         MALE                           18-FEB-91       18-MAR-10            24000        100 SECRETARY,VP
+      2003 GANESH                                        MALE                           18-MAR-92       19-APR-10            65000        110 MANAGER,ADMIN
+      2004 SRIRAM                                        MALE                           18-APR-91       25-APR-10            25000        110 HR EXECUTIVE
+      2005 SRIDEVI                                       FEMALE                         20-MAR-89       10-MAY-10            75000        120 MANAGER,FINANCE
+      2006 BALA                                          MALE                           20-APR-86       15-MAY-10            45000        120 AP ACCOUNTANT
+      2007 KANNAN                                        MALE                           18-MAR-84       20-JUN-10            42500        120 AR ACCOUNTANT
+      2008 SHALINI                                       FEMALE                         18-JUL-83       25-JUN-10            37500        120 ACCOUNTS EXECUTIVE
+      2009 SNEHA                                         FEMALE                         23-MAY-84       27-JUL-10            35500        120 ACCOUNTS  EXECUTIVE
+      2010 AHMED                                         MALE                           10-JAN-89       10-SEP-10            75000        130 PURCHASE MANAGER
+      2011 SEKAR                                         MALE                           10-JAN-87       25-SEP-10            43000        130 BUYER
+      2012 DEVAN                                         MALE                           10-JAN-88       25-OCT-10            43000        130 BUYER
+      2013 BAJALI                                        MALE                           10-JAN-87       30-OCT-10            75000        140 SALES MANAGER
+      2014 NAVEEN                                        MALE                           18-JUL-86       05-NOV-10            35000        140 SALES PERSON
+      2015 VINAYAGAM                                     MALE                           10-JAN-83       15-NOV-10            37500        140 SALES PERSON
+      2016 PANNER                                        MALE                           10-SEP-84       25-NOV-10            85000        150 PRODUCTION MANAGER
+      2017 PREM                                          MALE                           10-DEC-84       30-NOV-10            25000        150 OPERATOR
+      2018 SURESH                                        MALE                           13-MAY-83       05-DEC-10            35000        150 OPERATOR
+
+18 rows selected.
+
+
+SELECT EMP_NAME,DOJ FROM EMP_SRINI WHERE DOJ BETWEEN '01-JAN-10' AND '05-DEC-10'
+SQL> /
+
+EMP_NAME                                      DOJ
+--------------------------------------------- ---------------
+VISVANATHAN                                   15-FEB-10
+GOPAL                                         18-MAR-10
+GANESH                                        19-APR-10
+SRIRAM                                        25-APR-10
+SRIDEVI                                       10-MAY-10
+BALA                                          15-MAY-10
+KANNAN                                        20-JUN-10
+SHALINI                                       25-JUN-10
+SNEHA                                         27-JUL-10
+AHMED                                         10-SEP-10
+SEKAR                                         25-SEP-10
+DEVAN                                         25-OCT-10
+BAJALI                                        30-OCT-10
+NAVEEN                                        05-NOV-10
+VINAYAGAM                                     15-NOV-10
+PANNER                                        25-NOV-10
+PREM                                          30-NOV-10
+SURESH                                        05-DEC-10
+
+SQL> SELECT * FROM EMP_SRINI WHERE DEPT_ID BETWEEN 100 AND 120;
+
+     EMPID EMP_NAME                                      GENDER                         DOB             DOJ              BASIC_SAL    DEPT_ID DESIGNATION
+---------- --------------------------------------------- ------------------------------ --------------- --------------- ---------- ---------- ---------
+      2001 VISVANATHAN                                   MALE                           15-JAN-85       15-FEB-10           100000        100 VP,ADMIN
+      2002 GOPAL                                         MALE                           18-FEB-91       18-MAR-10            24000        100 SECRETARY,VP
+      2003 GANESH                                        MALE                           18-MAR-92       19-APR-10            65000        110 MANAGER,ADMIN
+      2004 SRIRAM                                        MALE                           18-APR-91       25-APR-10            25000        110 HR EXECUTIVE
+      2005 SRIDEVI                                       FEMALE                         20-MAR-89       10-MAY-10            75000        120 MANAGER,FINANCE
+      2006 BALA                                          MALE                           20-APR-86       15-MAY-10            45000        120 AP ACCOUNTANT
+      2007 KANNAN                                        MALE                           18-MAR-84       20-JUN-10            42500        120 AR ACCOUNTANT
+      2008 SHALINI                                       FEMALE                         18-JUL-83       25-JUN-10            37500        120 ACCOUNTS EXECUTIVE
+      2009 SNEHA                                         FEMALE                         23-MAY-84       27-JUL-10            35500        120 ACCOUNTS  EXECUTIVE
+
+9 rows selected.
+
+ SELECT * FROM EMP_SRINI WHERE DESIGNATION = 'MANAGER';
+
+  1* SELECT * FROM EMP_SRINI WHERE DOB < '1-JAN-1990'
+SQL> /
+
+     EMPID EMP_NAME                                      GENDER                         DOB             DOJ              BASIC_SAL    DEPT_ID DESIGNATION
+---------- --------------------------------------------- ------------------------------ --------------- --------------- ---------- ---------- ---------
+      2001 VISVANATHAN                                   MALE                           15-JAN-85       15-FEB-10           100000        100 VP,ADMIN
+      2005 SRIDEVI                                       FEMALE                         20-MAR-89       10-MAY-10            75000        120 MANAGER,FINANCE
+      2006 BALA                                          MALE                           20-APR-86       15-MAY-10            45000        120 AP ACCOUNTANT
+      2007 KANNAN                                        MALE                           18-MAR-84       20-JUN-10            42500        120 AR ACCOUNTANT
+      2008 SHALINI                                       FEMALE                         18-JUL-83       25-JUN-10            37500        120 ACCOUNTS EXECUTIVE
+      2009 SNEHA                                         FEMALE                         23-MAY-84       27-JUL-10            35500        120 ACCOUNTS  EXECUTIVE
+      2010 AHMED                                         MALE                           10-JAN-89       10-SEP-10            75000        130 PURCHASE MANAGER
+      2011 SEKAR                                         MALE                           10-JAN-87       25-SEP-10            43000        130 BUYER
+      2012 DEVAN                                         MALE                           10-JAN-88       25-OCT-10            43000        130 BUYER
+      2013 BAJALI                                        MALE                           10-JAN-87       30-OCT-10            75000        140 SALES MANAGER
+      2014 NAVEEN                                        MALE                           18-JUL-86       05-NOV-10            35000        140 SALES PERSON
+      2015 VINAYAGAM                                     MALE                           10-JAN-83       15-NOV-10            37500        140 SALES PERSON
+      2016 PANNER                                        MALE                           10-SEP-84       25-NOV-10            85000        150 PRODUCTION MANAGER
+      2017 PREM                                          MALE                           10-DEC-84       30-NOV-10            25000        150 OPERATOR
+      2018 SURESH                                        MALE                           13-MAY-83       05-DEC-10            35000        150 OPERATOR
+
+15 rows selected.
+
+SELECT EMPID,EMP_NAME FROM EMP_SRINI ORDER BY EMPID,EMP_NAME
+
+     EMPID EMP_NAME
+---------- ---------------------------------------------
+      2001 VISVANATHAN
+      2002 GOPAL
+      2003 GANESH
+      2004 SRIRAM
+      2005 SRIDEVI
+      2006 BALA
+      2007 KANNAN
+      2008 SHALINI
+      2009 SNEHA
+      2010 AHMED
+      2011 SEKAR
+      2012 DEVAN
+      2013 BAJALI
+      2014 NAVEEN
+      2015 VINAYAGAM
+      2016 PANNER
+      2017 PREM
+      2018 SURESH
+
+18 rows selected.
+
+
+SELECT * FROM EMP_SRINI WHERE TO_CHAR(DOJ,'MM')=11;
+SELECT * FROM EMP_SRINI WHERE TO_CHAR(DOJ,'MON')=NOV;
+
+     EMPID EMP_NAME                                      GENDER                         DOB             DOJ              BASIC_SAL    DEPT_ID DESIGNATION
+---------- --------------------------------------------- ------------------------------ --------------- --------------- ---------- ---------- ---------
+      2014 NAVEEN                                        MALE                           18-JUL-86       05-NOV-10            35000        140 SALES PERSON
+      2015 VINAYAGAM                                     MALE                           10-JAN-83       15-NOV-10            37500        140 SALES PERSON
+      2016 PANNER                                        MALE                           10-SEP-84       25-NOV-10            85000        150 PRODUCTION MANAGER
+      2017 PREM                                          MALE                           10-DEC-84       30-NOV-10            25000        150 OPERATOR
+
+  1* SELECT EMP_NAME,BASIC_SAL FROM EMP_SRINI WHERE BASIC_SAL BETWEEN 30000 AND 50000
+SQL> /
+
+EMP_NAME                                       BASIC_SAL
+--------------------------------------------- ----------
+BALA                                               45000
+KANNAN                                          42500
+SHALINI                                            37500
+SNEHA                                              35500
+SEKAR                                              43000
+DEVAN                                              43000
+NAVEEN                                            35000
+VINAYAGAM                                    37500
+SURESH                                           35000
+
+9 rows selected.
+
+SQL> SELECT * FROM EMP_SRINI WHERE DESIGNATION IN ('BUYER','PURCHASE MANAGER');
+
+     EMPID EMP_NAME                                      GENDER                         DOB             DOJ              BASIC_SAL    DEPT_ID DESIGNATION
+---------- --------------------------------------------- ------------------------------ --------------- --------------- ---------- ---------- ---------
+      2010 AHMED                                         MALE                           10-JAN-89       10-SEP-10            75000        130 PURCHASE MANAGER
+      2011 SEKAR                                         MALE                           10-JAN-87       25-SEP-10            43000        130 BUYER
+      2012 DEVAN                                         MALE                           10-JAN-88       25-OCT-10            43000        130 BUYER
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT * FROM EMP_SRINI WHERE DESIGNATION = 'BUYER' OR DESIGNATION = 'PURCHASE MANAGER'
+SQL> /
+
+     EMPID EMP_NAME                                      GENDER                         DOB             DOJ              BASIC_SAL    DEPT_ID DESIGNATION
+---------- --------------------------------------------- ------------------------------ --------------- --------------- ---------- ---------- ---------
+      2010 AHMED                                         MALE                           10-JAN-89       10-SEP-10            75000        130 PURCHASE MANAGER
+      2011 SEKAR                                         MALE                           10-JAN-87       25-SEP-10            43000        130 BUYER
+      2012 DEVAN                                         MALE                           10-JAN-88       25-OCT-10            43000        130 BUYER
+
+SQL> SELECT EMP_NAME,EMPID FROM EMP_SRINI WHERE EMP_NAME LIKE 'S%';
+
+EMP_NAME                                           EMPID
+--------------------------------------------- ----------
+SRIRAM                                              2004
+SRIDEVI                                             2005
+SHALINI                                             2008
+SNEHA                                               2009
+SEKAR                                               2011
+SURESH                                              2018
+
+ SELECT * FROM EMP_SRINI WHERE DOJ >='01-JAN-10';
+
+SQL> SELECT * FROM EMP_SRINI WHERE DESIGNATION LIKE '%MANAGER%';
+
+     EMPID EMP_NAME                                      GENDER                         DOB             DOJ              BASIC_SAL    DEPT_ID DESIGNATION
+---------- --------------------------------------------- ------------------------------ --------------- --------------- ---------- ---------- ---------
+      2003 GANESH                                        MALE                           18-MAR-92       19-APR-10            65000        110 MANAGER,ADMIN
+      2005 SRIDEVI                                       FEMALE                         20-MAR-89       10-MAY-10            75000        120 MANAGER,FINANCE
+      2010 AHMED                                         MALE                           10-JAN-89       10-SEP-10            75000        130 PURCHASE MANAGER
+      2013 BAJALI                                        MALE                           10-JAN-87       30-OCT-10            75000        140 SALES MANAGER
+      2016 PANNER                                        MALE                           10-SEP-84       25-NOV-10            85000        150 PRODUCTION MANAGER
+
+SELECT EMP_NAME, DESIGNATION FROM EMP_SRINI WHERE DESIGNATION LIKE '%ADMIN%'
+
+EMP_NAME                                      DESIGNATION
+--------------------------------------------- --------------------------------------------------
+VISVANATHAN                                   VP,ADMIN
+GANESH                                        MANAGER,ADMIN
+
+
+SELECT EMP_NAME,DOB FROM EMP_SRINI WHERE TO_CHAR(DOB,'YYYY')=1984
+
+EMP_NAME                                      DOB
+--------------------------------------------- ---------------
+KANNAN                                        18-MAR-84
+SNEHA                                         23-MAY-84
+PANNER                                        10-SEP-84
+PREM                                          10-DEC-84
+
+SELECT DEPT_ID,EMP_NAME FROM EMP_SRINI WHERE DEPT_ID = 100 OR DEPT_ID = 150;
+
+   DEPT_ID EMP_NAME
+---------- ---------------------------------------------
+       100 VISVANATHAN
+       100 GOPAL
+       150 PANNER
+       150 PREM
+       150 SURESH
+
+SELECT * FROM EMP_SRINI WHERE TO_CHAR(DOB,'MON')='MAR';
+
+   EMPID EMP_NAME                                      GENDER                         DOB             DOJ              BASIC_SAL    DEPT_ID DESIGNATION
+---------- --------------------------------------------- ------------------------------ --------------- --------------- ---------- ---------- ---------
+      2003 GANESH                                        MALE                           18-MAR-92       19-APR-10            65000        110 MANAGER,ADMIN
+      2005 SRIDEVI                                       FEMALE                         20-MAR-89       10-MAY-10            75000        120 MANAGER,FINANCE
+      2007 KANNAN                                        MALE                           18-MAR-84       20-JUN-10            42500        120 AR ACCOUNTANT
+
+
+SELECT * FROM EMP_SRINI WHERE DESIGNATION LIKE '%ACCOUNTANT%'
+
+     EMPID EMP_NAME                                      GENDER                         DOB             DOJ              BASIC_SAL    DEPT_ID DESIGNATION
+---------- --------------------------------------------- ------------------------------ --------------- --------------- ---------- ---------- ---------
+      2006 BALA                                          MALE                           20-APR-86       15-MAY-10            45000        120 AP ACCOUNTANT
+      2007 KANNAN                                        MALE                           18-MAR-84       20-JUN-10            42500        120 AR ACCOUNTANT
+
+
+
+SELECT COUNT(EMP_NAME) FROM EMP_SRINI
+
+COUNT(EMP_NAME)
+---------------
+             18
+
+
+SELECT AVG(BASIC_SAL) FROM EMP_SRINI WHERE GENDER='MALE';
+
+AVG(BASIC_SAL)
+---------------------
+50333.3333
+
+
+SELECT AVG(BASIC_SAL) FROM EMP_SRINI WHERE GENDER='FEMALE'
+
+AVG(BASIC_SAL)
+---------------------
+49333.3333
+
+
+SELECT SUM(BASIC_SAL) FROM EMP_SRINI WHERE DESIGNATION LIKE '%MANAGER%'
+
+SUM(BASIC_SAL)
+--------------
+375000
+
+SELECT COUNT(EMP_NAME) FROM EMP_SRINI WHERE DESIGNATION LIKE'%MANAGER%';
+
+COUNT(EMP_NAME)
+---------------
+              5
+
+SQL> ED
+Wrote file afiedt.buf
+
+SELECT DOJ, SUM(BASIC_SAL) FROM EMP_SRINI GROUP BY DOJ
+
+DOJ             	SUM(BASIC_SAL)
+--------------- 	--------------
+18-MAR-10                24000
+19-APR-10                65000
+10-MAY-10                75000
+27-JUL-10                35500
+05-NOV-10                35000
+25-NOV-10                85000
+15-NOV-10                37500
+30-OCT-10                75000
+15-MAY-10                45000
+25-SEP-10                43000
+20-JUN-10                42500
+25-JUN-10                37500
+30-NOV-10                25000
+15-FEB-10               100000
+25-OCT-10                43000
+25-APR-10                25000
+10-SEP-10                75000
+05-DEC-10                35000
+
+18 rows selected.
+
+ 
+
+SELECT EMP_NAME,BASIC_SAL FROM EMP_SRINI WHERE BASIC_SAL > (SELECT AVG(BASIC_SAL) FROM EMP_SRINI)
+
+EMP_NAME                                       BASIC_SAL
+--------------------------------------------- ----------
+VISVANATHAN                                       100000
+GANESH                                             65000
+SRIDEVI                                            75000
+AHMED                                              75000
+BAJALI                                             75000
+PANNER                                             85000
+
+6 rows selected.
+
+SQL> SELECT EMP_NAME FROM EMP_SRINI WHERE BASIC_SAL = (SELECT MAX(BASIC_SAL) FROM EMP_SRINI);
+
+EMP_NAME
+---------------------------------------------
+VISVANATHAN
+
+SUBQUERY.....
+
+SELECT EMP_NAME FROM EMP_SRINI WHERE DESIGNATION = (SELECT DESIGNATION FROM EMP_SRINI WHERE BASIC_SAL = (SELECT MAX(BASIC_SAL) FROM EMP_SRINI));
+
+
+SELECT * FROM EMP_SRINI WHERE EXTRACT (MONTH FROM DOB) =
+( SELECT EXTRACT (MONTH FROM DOB) FROM EMP_SRINI WHERE EMP_NAME = 'GOPAL')
+
+
+     EMPID EMP_NAME                                      GENDER                         DOB             DOJ              BASIC_SAL    DEPT_ID DESIGNATION
+---------- --------------------------------------------- ------------------------------ --------------- --------------- ---------- ---------- ---------
+      2002 GOPAL                                         MALE                           18-FEB-91       18-MAR-10            24000        100 SECRETARY,VP
+

@@ -1,0 +1,26 @@
+SUBQUERY
+
+Subqueries are used to perform operations that require data from multiple tables or results from another query
+
+They can be used in various parts of a SQL statement, including the SELECT, FROM, WHERE, and HAVING clauses.
+
+Types of Subqueries
+
+Single-Row Subqueries: Return only one row.
+Multiple-Row Subqueries: Return multiple rows.
+Correlated Subqueries: Refer to columns from the outer query.
+
+QUERIES
+
+CREATE TABLE VARUN AS SELECT * FROM ARUN;
+
+CREATE TABLE THARUN AS SELECT * FROM ARUN WHERE SALARY>10000;
+
+INSERT INTO VARUN(SELECT * FROM ARUN);
+
+INSERT INTO VARUN(SELECT * FROM ARUN);
+
+SELECT ID, NAME, (SELECT TOTAL FROM EXAM_MARKS WHERE EXAM_MARKS.TOTAL>200) FROM EXAM;
+
+
+

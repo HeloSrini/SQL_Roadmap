@@ -1,0 +1,181 @@
+
+SQL>  SELECT * FROM EMP_DETAIL;
+
+EMP_ID     EMP_DEP_ID EMP_NAME                     EMP_SAL EMP_DB    EMP_JOIN_
+---------- ---------- ------------------------- ---------- --------- ---------
+18IT101    DEP_DEV    SURYA                          24000 30-NOV-95 18-JUL-17
+18IT102    DEP_FIN    MATHIE                         22000 31-AUG-92 09-AUG-16
+18IT103    DEP_RPT    SATHISH                        26000 11-NOV-94 01-JUN-17
+18IT104    DEP_RPT    JAGAN                          23000 23-DEC-97 01-JUN-17
+18IT105    DEP_QC     HAREESH                        20500 20-JUN-91 10-FEB-17
+18IT106    DEP_DEV    ABI                            20500 22-JUN-91 09-OCT-17
+
+6 rows selected.
+
+
+  1  CREATE TABLE COST_DETAIL(
+  2  EMP_ID  NUMBER(5),
+  3  CUST_ID  VARCHAR2(10),
+  4  CUST_NAME VARCHAR2(15),
+  5  ITEM_ID  VARCHAR2(10),
+  6  ITEM_QNT NUMBER(5,2) DEFAULT 0 NOT NULL,
+  7  ITEM_PRICE NUMBER(8,2) DEFAULT 0 NOT NULL,
+  8  INNV_DATE DATE DEFAULT SYSDATE,
+  9  TOT_AMOUNT NUMBER(8,2) DEFAULT 0 NOT NULL,
+ 10* CONSTRAINT COST01_FK FOREIGN KEY(EMP_ID) REFERENCES EMP_DESC(EMP_ID))
+SQL> /
+
+Table created.
+
+
+SQL> CREATE OR REPLACE VIEW COST_DETAIL_VW AS SELECT CUST_ID, INNV_DATE, TOT_AMOUNT FROM COST_DETAIL;
+
+View created.
+
+SQL> SELECT * FROM COST_DETAIL_VW;
+
+CUST_ID    INNV_DATE TOT_AMOUNT
+---------- --------- ----------
+CUS01      20-JAN-24        100
+CUS02      25-JAN-24        300
+CUS03      30-JAN-24        200
+CUS02      28-FEB-24        500
+CUS04      28-FEB-24        600
+CUS07      28-MAR-24        392
+
+6 rows selected.
+
+
+  1*  CREATE OR REPLACE VIEW COST_DET_VW AS SELECT CUST_ID, CUST_NAME, ITERM_NAME, SUM(ITEM_QNT) "TOTAL QNT", SUM(TOT_AMOUNT) AMOUNT FROM COST_DETAIL GROUP BY CUST_ID, CUST_NAME, ITERM_NAME;
+SQL> /
+
+View created.
+
+SQL> SELECT * FROM COST_DET_VW;
+
+CUST_ID    CUST_NAME       ITEM_NAME             TOTAL QNT     AMOUNT
+---------- --------------- -------------------- ---------- ----------
+CUS05      HAREESH         camel geometry box            7        175
+CUS03      BALAJI          DOMS NOTE BOOK               14        592
+CUS02      AJAY            WATER BOTTLE                  6        300
+CUS01      SURYA           DOMS NOTE BOOK                5        100
+CUS05      HAREESH         WRITING PAD                   7        161
+CUS02      SURYA           KEY BOARD                     5        500
+CUS04      SATHISH         KEY BOARD                    11       1100
+
+7 rows selected.
+
+
+SQL> CREATE OR REPLACE VIEW CUST_VW AS SELECT E.EMP_ID, E.EMP_DEP_ID, C.CUST_ID, C.CUST_NAME, C.ITEM_ID, C.ITEM_NAME, C.TOT_AMOUNT FROM COST_DETAIL C FULL JOIN EMP_DETAIL E ON C.EMP_ID = E.EMP_ID;
+
+View created.
+
+SQL> SELECT * FROM CUST_VW;
+
+EMP_ID     EMP_DEP_ID CUST_ID    CUST_NAME       ITEM_ID    ITEM_NAME            TOT_AMOUNT
+---------- ---------- ---------- --------------- ---------- -------------------- ----------
+18IT101    DEP_DEV    CUS01      SURYA           A1B01      DOMS NOTE BOOK              100
+18IT102    DEP_FIN    CUS02      AJAY            A1B03      WATER BOTTLE                300
+18IT106    DEP_FIN    CUS03      BALAJI          A1B01      DOMS NOTE BOOK              200
+18IT104    DEP_RPT    CUS02      SURYA           A1B08      KEY BOARD                   500
+18IT105    DEP_QC     CUS04      SATHISH         A1B08      KEY BOARD                   600
+18IT106    DEP_DEV    CUS07      BALAJI          A1B09      PENS                        392
+18IT103    DEP_RPT    CUS05      HAREESH         A1B10      WRITING PAD                 161
+18IT106    DEP_DEV    CUS05      HAREESH         A1B02      camel geometry box          175
+
+8 rows selected.
+
+
+  1* CREATE OR REPLACE VIEW EMP_COST_DET AS SELECT E.EMP_ID, E.EMP_NAME, C.CUST_ID, C.CUST_NAME, SUM(C.TOT_AMOUNT) AMOUNT 
+	FROM EMP_DETAIL E, COST_DETAIL C 
+	WHERE E.EMP_ID = C.EMP_ID GROUP BY E.EMP_ID, E.EMP_NAME, C.CUST_ID, C.CUST_NAME
+SQL> /
+
+View created.
+
+SQL> SELECT * FROM EMP_COST_DET;
+
+EMP_ID     EMP_NAME                  CUST_ID    CUST_NAME           AMOUNT
+---------- ------------------------- ---------- --------------- ----------
+18IT103    SATHISH                   CUS05      HAREESH                161
+18IT104    JAGAN                     CUS02      SURYA                  500
+18IT106    ABI                       CUS05      HAREESH                175
+18IT101    SURYA                     CUS01      SURYA                  100
+18IT105    HAREESH                   CUS04      SATHISH                600
+18IT106    ABI                       CUS03      BALAJI                 592
+18IT102    MATHIE                    CUS02      AJAY                   300
+18IT106    ABI                       CUS04      SATHISH                500
+
+8 rows selected.
+SQL> 
+
+INSERT INTO COST_DETAIL VALUES('18IT106', 'CUS05', 'HAREESH', 'A1B02', 7, 25, '10-FEB-24', 7*25)
+
+INSERT INTO COST_DETAIL VALUES('18IT106', 'CUS04', 'SATHISH', 'A1B08', 5, 10, '17-FEB-24', 5*10)
+
+
+SQL> CREATE OR REPLACE VIEW EMP_QNT_DET AS SELECT EMP_ID, ITEM_ID, SUM(ITEM_QNT) TOTAL_QNT FROM COST_DETAIL GROUP BY EMP_ID, ITEM_ID ORDER BY EMP_ID;
+
+View created.
+
+SQL>  SELECT * FROM EMP_QNT_DET;
+
+EMP_ID     ITEM_ID     TOTAL_QNT
+---------- ---------- ----------
+18IT101    A1B01               5
+18IT102    A1B03               6
+18IT103    A1B10               7
+18IT104    A1B08               5
+18IT105    A1B08               6
+18IT106    A1B01              10
+18IT106    A1B02               7
+18IT106    A1B08               5
+18IT106    A1B09               4
+
+9 rows selected.
+
+
+
+SQL> CREATE OR REPLACE VIEW EMP_COST_DET AS SELECT E.EMP_ID, E.EMP_NAME, C.CUST_ID, C.CUST_NAME, SUM(C.ITEM_QNT) TOTAL_QNT, SUM(C.TOT_AMOUNT) AMOUNT 
+  2   FROM EMP_DETAIL E, COST_DETAIL C 
+  3   WHERE E.EMP_ID = C.EMP_ID GROUP BY E.EMP_ID, E.EMP_NAME, C.CUST_ID, C.CUST_NAME;
+
+View created.
+
+SQL> SELECT * FROM EMP_COST_DET;
+
+EMP_ID     EMP_NAME                  CUST_ID    CUST_NAME        TOTAL_QNT     AMOUNT
+---------- ------------------------- ---------- --------------- ---------- ----------
+18IT103    SATHISH                   CUS05      HAREESH                  7        161
+18IT104    JAGAN                     CUS02      SURYA                    5        500
+18IT106    ABI                       CUS05      HAREESH                  7        175
+18IT101    SURYA                     CUS01      SURYA                    5        100
+18IT105    HAREESH                   CUS04      SATHISH                  6        600
+18IT106    ABI                       CUS03      BALAJI                  14        592
+18IT102    MATHIE                    CUS02      AJAY                     6        300
+18IT106    ABI                       CUS04      SATHISH                  5        500
+
+8 rows selected.
+
+
+
+ 
+SQL> CREATE OR REPLACE VIEW EMP_QNT_DET AS SELECT EMP_ID, ITEM_ID, SUM(TOT_AMOUNT) AMOUNT FROM COST_DETAIL GROUP BY EMP_ID, ITEM_ID ORDER BY EMP_ID;
+
+View created.
+
+SQL> SELECT * FROM EMP_QNT_DET;
+
+EMP_ID     ITEM_ID        AMOUNT
+---------- ---------- ----------
+18IT101    A1B01             100
+18IT102    A1B03             300
+18IT103    A1B10             161
+18IT104    A1B08             500
+18IT105    A1B08             600
+18IT106    A1B01             200
+18IT106    A1B02             175
+18IT106    A1B08             500
+18IT106    A1B09             392
+
+9 rows selected.

@@ -1,0 +1,70 @@
+RANK( ) -ANALYTIC FUNCTION
+
+SELECT  * FROM (SELECT EMPID,EMP_NAME,RANK() OVER(ORDER BY BASIC_SAL) "GRADE"
+FROM EMP_SRINI);
+
+     EMPID EMP_NAME                                                      GRADE
+---------- ---------------------------------------------            ----------
+      2002 GOPAL                                                  	1
+      2017 PREM                                                   		2
+      2004 SRIRAM                                                 	2
+      2018 SURESH                                                 	4
+      2014 NAVEEN                                                 	4
+      2009 SNEHA                                                  	6
+      2015 VINAYAGAM                                              	7
+      2008 SHALINI                                                	7
+      2007 KANNAN                                                 	9
+      2011 SEKAR                                                 		10
+      2012 DEVAN                                                 		10
+      2006 BALA                                                  		12
+      2003 GANESH                                                	13
+      2010 AHMED                                                 	14
+      2005 SRIDEVI                                               	14
+      2013 BAJALI                                                		14
+      2016 PANNER                                                	17
+      2001 VISVANATHAN                                           	18
+
+18 rows selected.
+
+
+DENSE_RANK( ) -ANALYTIC FUNCTION
+
+SELECT  * FROM (SELECT EMPID,EMP_NAME,DENSE_RANK() OVER(ORDER BY BASIC_SAL) "GRADE"
+FROM EMP_SRINI)
+
+
+     EMPID EMP_NAME                                                        GRADE
+---------- ---------------------------------------------              ----------
+      2002 GOPAL                                                  	1
+      2017 PREM                                                   		2
+      2004 SRIRAM                                                 	2
+      2018 SURESH                                                 	3
+      2014 NAVEEN                                                 	3
+      2009 SNEHA                                                  	4
+      2015 VINAYAGAM                                              	5
+      2008 SHALINI                                                	5
+      2007 KANNAN                                                 	6
+      2011 SEKAR                                                  	7
+      2012 DEVAN                                                  	7
+      2006 BALA                                                   		8
+      2003 GANESH                                                 	9
+      2010 AHMED                                                 	10
+      2005 SRIDEVI                                               	10
+      2013 BAJALI                                                		10
+      2016 PANNER                                                	11
+      2001 VISVANATHAN                                           	12
+
+18 rows selected.S
+
+
+
+
+SELECT CASE
+WHEN
+WHEN
+WHEN
+ELSE 
+END
+DECODE
+FROM TABLE_NAME
+GROUP BY 

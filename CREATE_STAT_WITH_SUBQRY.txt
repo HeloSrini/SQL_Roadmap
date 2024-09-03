@@ -1,0 +1,76 @@
+SQL> CREATE TABLE A_02 AS SELECT * FROM A_01;
+
+Table created.
+
+SQL> DESC A_02
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SNO                                                VARCHAR2(10)
+ SNAME                                              VARCHAR2(200)
+ M1                                        NOT NULL NUMBER(7,3)
+ M2                                        NOT NULL NUMBER(7,3)
+ TOTAL                                     NOT NULL NUMBER(7,3)
+
+SQL> SELECT SNO,TOTAL FROM A_02;
+
+SNO             TOTAL
+---------- ----------
+101               160
+102               320
+103               305
+104               198
+
+SQL> CREATE TABLE A_03 AS SELECT * FROM A_01 WHERE TOTAL>300;
+
+Table created.
+
+SQL>  SELECT SNO,TOTAL FROM A_03;
+
+SNO             TOTAL
+---------- ----------
+102               320
+103               305
+
+SQL> CREATE TABLE A_04 AS SELECT SNO,TOTAL FROM A_01 WHERE TOTAL > 300;
+
+Table created.
+
+SQL> DESC A_04
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SNO                                                VARCHAR2(10)
+ TOTAL                                     NOT NULL NUMBER(7,3)
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* CREATE TABLE A_04 AS SELECT SNO,TOTAL FROM A_01 WHERE TOTAL IS NULL
+SQL> /
+CREATE TABLE A_04 AS SELECT SNO,TOTAL FROM A_01 WHERE TOTAL IS NULL
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* CREATE TABLE A_05 AS SELECT SNO,TOTAL FROM A_01 WHERE TOTAL IS NULL
+SQL> /
+
+Table created.
+
+SQL> DESC A_05;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SNO                                                VARCHAR2(10)
+ TOTAL                                     NOT NULL NUMBER(7,3)
+
+SQL> SELECT * FROM A_05;
+
+no rows selected
+
+SQL> 
+
+
+INSERT INTO A_05 (SNO,TOTAL) (SELECT SNO,TOTAL FROM A_01);

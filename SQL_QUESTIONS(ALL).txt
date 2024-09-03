@@ -1,0 +1,133 @@
+SQL QUESTIONS 
+
+### Basic Selection Queries:
+1. Retrieve all details of employees.
+2. Retrieve the names of all male employees.
+3. Retrieve the names of all female employees.
+4. Retrieve details of employees whose BASIC_SAL is greater than 50000.
+5. Retrieve the names of employees who joined in 2010. -- 
+6. Retrieve details of employees from DEPT_ID 120.
+7. Retrieve details of employees who are managers.
+8. Retrieve employees who were born before 1990.
+9. Retrieve the employee details based on EMPID.
+10. Retrieve details of employees who joined in the month of November.
+
+
+
+
+
+
+
+
+
+
+
+### Conditional Queries:
+11. Retrieve the names of employees whose salary is between 30000 and 50000.
+12. Retrieve employees who are either 'BUYER' or 'PURCHASE MANAGER'.
+13. Retrieve the names of employees whose names start with 'S'.
+14. Retrieve employees who joined on or after 01-JAN-2010.
+15. Retrieve the employees whose DESIGNATION includes the word 'MANAGER'.
+16. Retrieve details of employees who are in the 'ADMIN' department.
+17. Retrieve the names of employees who were born in the year 1984.
+18. Retrieve details of employees whose department ID is either 100 or 150.
+19. Retrieve employees who were born in March.
+20. Retrieve the details of employees who have 'ACCOUNTANT' in their designation.
+
+### Aggregate Functions:
+21. Retrieve the total number of employees.
+22. Retrieve the average BASIC_SAL of employees.
+23. Retrieve the highest BASIC_SAL in the company.
+24. Retrieve the lowest BASIC_SAL in the company.
+25. Retrieve the total BASIC_SAL paid to employees in department 120.
+26. Retrieve the number of employees in each department.
+27. Retrieve the average BASIC_SAL of female employees.
+28. Retrieve the sum of BASIC_SAL for 'MANAGER' designation.
+29. Retrieve the number of male employees in department 130.
+30. Retrieve the highest BASIC_SAL for each department.
+
+### Group By and Having:
+31. Retrieve the number of employees in each DEPT_ID.
+32. Retrieve the total BASIC_SAL for each DEPT_ID.
+33. Retrieve the average BASIC_SAL for each designation.
+34. Retrieve the minimum BASIC_SAL for each DEPT_ID.
+35. Retrieve the maximum BASIC_SAL for each gender.
+36. Retrieve the count of employees who joined each month.
+37. Retrieve the total BASIC_SAL paid to employees who joined in each month.
+38. Retrieve the number of employees in each gender who are managers.
+39. Retrieve the sum of BASIC_SAL for each year of joining.
+40. Retrieve the count of employees whose salary is above the average BASIC_SAL in each department.
+
+### Order By:
+41. Retrieve the employee details ordered by BASIC_SAL in ascending order.
+42. Retrieve the employee details ordered by DOB in descending order.
+43. Retrieve the names of employees ordered by DOJ.
+44. Retrieve the names of employees ordered by DESIGNATION.
+45. Retrieve the details of employees ordered by DEPT_ID and then by BASIC_SAL.
+46. Retrieve the details of employees ordered by NAME alphabetically.
+47. Retrieve the details of employees ordered by BASIC_SAL in descending order.
+48. Retrieve the details of employees ordered by DOJ in ascending order.
+49. Retrieve the details of employees ordered by GENDER and then by BASIC_SAL.
+50. Retrieve the details of employees ordered by DOB and then by NAME.
+
+### Joins (Assuming another table DEPARTMENT exists):
+51. Retrieve the employee details along with their department names.
+52. Retrieve the employees who are in the 'Finance' department.
+53. Retrieve the number of employees in each department by joining with the DEPARTMENT table.
+54. Retrieve the average BASIC_SAL of employees in each department by joining with the DEPARTMENT table.
+55. Retrieve the details of employees and their department manager by joining with the DEPARTMENT table.
+56. Retrieve the details of employees along with their department locations by joining with the DEPARTMENT table.
+57. Retrieve the number of male and female employees in each department by joining with the DEPARTMENT table.
+58. Retrieve the details of employees whose department name starts with 'S' by joining with the DEPARTMENT table.
+59. Retrieve the total BASIC_SAL of employees in each department whose name contains 'Account' by joining with the DEPARTMENT table.
+60. Retrieve the employee details and their department budget by joining with the DEPARTMENT table.
+
+### Subqueries:
+61. Retrieve the details of employees who earn more than the average salary.
+62. Retrieve the names of employees who have the highest salary in each department.
+63. Retrieve the details of the employee who has the highest salary in the company.
+64. Retrieve the names of employees who earn more than their department's average salary.
+65. Retrieve the details of employees who joined on the same date as the earliest join date.
+66. Retrieve the details of employees whose BASIC_SAL is above the overall average salary.
+67. Retrieve the details of employees who were born on the same day of the month as the oldest employee.
+68. Retrieve the names of employees who have the same designation as the employee with the highest salary.
+69. Retrieve the details of employees who are in the same department as 'KANNAN'.
+70. Retrieve the names of employees who earn less than the lowest salary in department 130.
+
+### Update Queries:
+71. Update the BASIC_SAL of all employees by increasing it by 10%.
+72. Update the department ID of 'GANESH' to 130.
+73. Update the designation of 'SRIDEVI' to 'SENIOR MANAGER,FINANCE'.
+74. Update the DOJ of employees who joined before 2010-03-01 to 2010-01-01.
+75. Update the BASIC_SAL of employees in department 110 by decreasing it by 5%.
+76. Update the GENDER of 'SHALINI' to 'F'.
+77. Update the department ID of all 'ACCOUNTANT' designations to 140.
+78. Update the BASIC_SAL of employees whose designation is 'OPERATOR' to 30000.
+79. Update the DOJ of 'AHMED' to 2010-08-01.
+80. Update the DEPT_ID of 'SRIRAM' to 130.
+
+### Delete Queries:
+81. Delete the employee record of 'PREM'.
+82. Delete all employees from department 150.
+83. Delete employees whose BASIC_SAL is less than 30000.
+84. Delete employees who joined before 2010-01-01.
+85. Delete the record of the employee with the highest BASIC_SAL.
+86. Delete employees who are 'OPERATOR'.
+87. Delete the record of the employee born on 1984-09-10.
+88. Delete all employees whose designation includes 'EXECUTIVE'.
+89. Delete employees whose name starts with 'V'.
+90. Delete the record of the employee with EMPID 2010.
+
+### Complex Queries:
+91. Retrieve the details of the highest-paid female employee.
+92. Retrieve the total BASIC_SAL of the top 3 highest-paid employees.
+93. Retrieve the names of employees who have the same DOB as any other employee.
+94. Retrieve the department with the highest number of employees.
+95. Retrieve the names of employees who have joined the company in the same month and year.
+96. Retrieve the average BASIC_SAL of the top 5 departments with the highest total BASIC_SAL.
+97. Retrieve the details of employees who have the highest salary in each designation.
+98. Retrieve the details of the employees who are in the same department as the highest-paid employee.
+99. Retrieve the second highest BASIC_SAL in the company.
+100. Retrieve the details of employees who joined in the first quarter of the year.
+
+These subqueries should provide a comprehensive set of operations to explore, analyze, and manipulate the given employee data.

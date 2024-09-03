@@ -1,0 +1,199 @@
+JOINS
+
+SUPPLIERS
+CREATE TABLE SUPL_INFO
+(
+SUPPLIER_ID    NUMBER(10),
+SUPPLIER_NAME  VARCHAR2(15),
+SUPPLIER_ADDRESS  VARCHAR2(15)
+);
+
+
+ORDER_1
+CREATE TABLE ORDER_1
+(
+ORDER_NAME    VARCHAR2(10),
+SUPPLIER_ID    NUMBER(10),
+CITY   VARCHAR2(15)
+);
+
+FOR A TABLE  SUPL_INFO
+
+INSERT INTO SUPL_INFO VALUES(2,'PRAKASH','ECR');
+INSERT INTO SUPL_INFO VALUES(4,'MANI','ECR');
+INSERT INTO SUPL_INFO VALUES(5,'GOKUL','ECR');
+INSERT INTO SUPL_INFO VALUES(7,'AAKASH','ECR');
+INSERT INTO SUPL_INFO VALUES(9,'ARUN','ECR');
+
+
+FOR A TABLE ORDER_1
+
+INSERT INTO ORDER_1 VALUES('VIVO',1,'CHENNAI');
+INSERT INTO ORDER_1 VALUES('REALME',4,'CUDDALORE');
+INSERT INTO ORDER_1 VALUES('REDMI',3,'PANRUTI');
+INSERT INTO ORDER_1 VALUES('APPLE',7,'PONDY');
+INSERT INTO ORDER_1 VALUES('OPPO',5,'VILLUPURAM');
+
+INNER JOIN
+
+SELECT SUPL_INFO.SUPPLIER_ID, SUPL_INFO.SUPPLIER_NAME, ORDER_1.ORDER_NAME
+FROM SUPL_INFO
+INNER JOIN ORDER_1 ON SUPL_INFO.SUPPLIER_ID = ORDER_1.SUPPLIER_ID;
+
+
+ LEFT JOIN
+
+SELECT SUPL_INFO.SUPPLIER_ID, SUPL_INFO.SUPPLIER_NAME, ORDER_1.ORDER_NAME
+FROM SUPL_INFO
+LEFT JOIN ORDER_1 ON SUPL_INFO.SUPPLIER_ID = ORDER_1.SUPPLIER_ID;
+
+RIGHT JOIN
+
+SELECT SUPL_INFO.SUPPLIER_ID, SUPL_INFO.SUPPLIER_NAME, ORDER_1.ORDER_NAME
+FROM SUPL_INFO
+RIGHT JOIN ORDER_1 ON SUPL_INFO.SUPPLIER_ID = ORDER_1.SUPPLIER_ID;
+
+FULL JOIN
+
+SELECT SUPL_INFO.SUPPLIER_ID, SUPL_INFO.SUPPLIER_NAME, ORDER_1.ORDER_NAME
+FROM SUPL_INFO
+FULL JOIN ORDER_1 ON SUPL_INFO.SUPPLIER_ID = ORDER_1.SUPPLIER_ID;
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+JOINS WORK FLOW
+
+
+SQL> CREATE TABLE SUPL_INFO
+  2  (
+  3  SUPPLIER_ID    NUMBER(10),
+  4  SUPPLIER_NAME  VARCHAR2(15),
+  5  SUPPLIER_ADDRESS  VARCHAR2(15)
+  6  );
+
+Table created.
+
+SQL> CREATE TABLE ORDER_1
+  2  (
+  3  ORDER_NAME    VARCHAR2(10),
+  4  SUPPLIER_ID    NUMBER(10),
+  5  CITY   VARCHAR2(15)
+  6  );
+
+Table created.
+
+SQL> INSERT INTO SUPL_INFO VALUES(2,'PRAKASH','ECR');
+
+1 row created.
+
+SQL> INSERT INTO SUPL_INFO VALUES(4,'MANI','ECR');
+
+1 row created.
+
+SQL> INSERT INTO SUPL_INFO VALUES(5,'GOKUL','ECR');
+
+1 row created.
+
+SQL> INSERT INTO SUPL_INFO VALUES(7,'AAKASH','ECR');
+
+1 row created.
+
+SQL> INSERT INTO SUPL_INFO VALUES(9,'ARUN','ECR');
+
+1 row created.
+
+SQL> SELECT * FROM SUPL_INFO;
+
+SUPPLIER_ID SUPPLIER_NAME                                 SUPPLIER_ADDRESS
+----------- --------------------------------------------- ------------------------------------------
+          2 PRAKASH                                       ECR
+          4 MANI                                          ECR
+          5 GOKUL                                         ECR
+          7 AAKASH                                        ECR
+          9 ARUN                                          ECR
+
+SQL> INSERT INTO ORDER_1 VALUES('VIVO',1,'CHENNAI');
+
+1 row created.
+
+SQL> INSERT INTO ORDER_1 VALUES('REALME',4,'CUDDALORE');
+
+1 row created.
+
+SQL> INSERT INTO ORDER_1 VALUES('REDMI',3,'PANRUTI');
+
+1 row created.
+
+SQL> INSERT INTO ORDER_1 VALUES('APPLE',7,'PONDY');
+
+1 row created.
+
+SQL> INSERT INTO ORDER_1 VALUES('OPPO',5,'VILLUPURAM');
+
+1 row created.
+
+SQL> SELECT * FROM ORDER_1;
+
+ORDER_NAME                     SUPPLIER_ID CITY
+------------------------------ ----------- ---------------------------------------------
+VIVO                                     1 CHENNAI
+REALME                                   4 CUDDALORE
+REDMI                                    3 PANRUTI
+APPLE                                    7 PONDY
+OPPO                                     5 VILLUPURAM
+
+SQL> SELECT SUPL_INFO.SUPPLIER_ID, SUPL_INFO.SUPPLIER_NAME, ORDER_1.ORDER_NAME
+  2  FROM SUPL_INFO
+  3  INNER JOIN ORDER_1 ON SUPL_INFO.SUPPLIER_ID = ORDER_1.SUPPLIER_ID;
+
+SUPPLIER_ID SUPPLIER_NAME                                 ORDER_NAME
+----------- --------------------------------------------- ------------------------------
+          4 MANI                                          REALME
+          7 AAKASH                                        APPLE
+          5 GOKUL                                         OPPO
+
+SQL> SELECT SUPL_INFO.SUPPLIER_ID, SUPL_INFO.SUPPLIER_NAME, ORDER_1.ORDER_NAME
+  2  FROM SUPL_INFO
+  3  LEFT JOIN ORDER_1 ON SUPL_INFO.SUPPLIER_ID = ORDER_1.SUPPLIER_ID;
+
+SUPPLIER_ID SUPPLIER_NAME                                 ORDER_NAME
+----------- --------------------------------------------- ------------------------------
+          4 MANI                                          REALME
+          7 AAKASH                                        APPLE
+          5 GOKUL                                         OPPO
+          2 PRAKASH
+          9 ARUN
+
+SQL> SELECT SUPL_INFO.SUPPLIER_ID, SUPL_INFO.SUPPLIER_NAME, ORDER_1.ORDER_NAME
+  2  FROM SUPL_INFO
+  3  RIGHT JOIN ORDER_1 ON SUPL_INFO.SUPPLIER_ID = ORDER_1.SUPPLIER_ID;
+
+SUPPLIER_ID SUPPLIER_NAME                                 ORDER_NAME
+----------- --------------------------------------------- ------------------------------
+          4 MANI                                          REALME
+          5 GOKUL                                         OPPO
+          7 AAKASH                                        APPLE
+                                                          REDMI
+                                                          VIVO
+
+SQL> 
+SQL> SELECT SUPL_INFO.SUPPLIER_ID, SUPL_INFO.SUPPLIER_NAME, ORDER_1.ORDER_NAME
+  2  FROM SUPL_INFO
+  3  FULL JOIN ORDER_1 ON SUPL_INFO.SUPPLIER_ID = ORDER_1.SUPPLIER_ID;
+
+SUPPLIER_ID SUPPLIER_NAME                                 ORDER_NAME
+----------- --------------------------------------------- ------------------------------
+                                                          VIVO
+          4 MANI                                          REALME
+                                                          REDMI
+          7 AAKASH                                        APPLE
+          5 GOKUL                                         OPPO
+          2 PRAKASH
+          9 ARUN
+
+7 rows selected.
+
+SQL> 
+

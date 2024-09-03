@@ -1,0 +1,17 @@
+TASK
+-------
+
+1) CREATE LOCATION TABLE
+	- Location id must be primary key
+                  - Location name must not allow NULL
+                  - City must be specified
+
+2) CREATE DEPARTMENT TABLE
+	- Department id must be primary key
+	- Department name must not allow NULL
+ 	- Location should be Foreign key
+
+3) EMPLOYEE TABLE
+	- Employee id must be pk
+                  - Employee name must not allow NULL
+	- Deparment should be Foreign key

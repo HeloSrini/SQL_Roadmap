@@ -1,0 +1,84 @@
+		TEST -2 QUESTIONS PRACTICE
+
+SQL> SELECT CEIL(-0.00895) FROM DUAL;
+
+CEIL(-0.00895)
+--------------
+             0
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT FLOOR(-0.00895) FROM DUAL
+SQL> /
+
+FLOOR(-0.00895)
+---------------
+             -1
+
+SQL> SELECT LENGTH('ROADMAP') FROM DUAL;
+
+LENGTH('ROADMAP')
+-----------------
+                7
+
+SQL> SELECT VSIZE('ROADMAP') FROM DUAL;
+
+VSIZE('ROADMAP')
+----------------
+               7
+
+SQL> SELECT 5*2+(8/2*5) FROM DUAL;
+
+5*2+(8/2*5)
+-----------
+         30
+
+SQL> SELECT COUNT(NULL) FROM DUAL;
+
+COUNT(NULL)
+-----------
+          0
+
+SQL> SELECT LENGTH(NULL) FROM DUAL;
+
+LENGTH(NULL)
+------------
+
+
+SQL> SELECT COUNT(5+5) FROM DUAL;
+
+COUNT(5+5)
+----------
+         1
+
+SQL> SELECT INSTR('QUESTIONS',U) FROM DUAL;
+SELECT INSTR('QUESTIONS',U) FROM DUAL
+                         *
+ERROR at line 1:
+ORA-00904: "U": invalid identifier
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT INSTR('QUESTIONS','U') FROM DUAL
+SQL> /
+
+INSTR('QUESTIONS','U')
+----------------------
+                     2
+
+SQL> SELECT INSTR('NISSAN AUTOMOTIVE','O',-2) FROM DUAL;
+
+INSTR('NISSANAUTOMOTIVE','O',-2)
+--------------------------------
+                              13
+
+SQL> SELECT ROUND(166.85,-1) FROM DUAL
+  2  ;
+
+ROUND(166.85,-1)
+----------------
+             170
+

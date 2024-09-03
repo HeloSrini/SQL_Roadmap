@@ -1,0 +1,154 @@
+TASK 1:
+
+CREATING TABLE WITH PRIMARY KEY.
+
+CREATE TABLE DEPT_NEW(
+DEPT_ID      VARCHAR2(8) PRIMARY KEY,
+DEPT_NAME    VARCHAR2(15) NOT NULL,
+DEPT_LID     VARCHAR2(6));
+
+----------------------------------------------------------------
+TASK2:
+
+INSERT A VALUES WITH ADDRESS METHOD AND SKIP ANY VALUE:
+
+INSERT INTO DEPT_NEW (DEPT_ID,DEPT_NAME,DEPT_LID)
+VALUES (1011,'ARUN');
+
+ERROR:
+
+VALUES (1011,'ARUN')
+*
+ERROR at line 2:
+ORA-00947: not enough values
+----------------------------------------------------------------
+TASK 3:
+
+INSERT A VALUE WITH VALUE METHOD AND SKIP ANY VALUE:
+
+INSERT INTO DEPT_NEW
+VALUES(1022,'HEMAPRASAD');
+
+INSERT INTO DEPT_NEW
+            *
+ERROR at line 1:
+ORA-00947: not enough values
+----------------------------------------------------------------
+TASK 4:
+
+CREATING TABLE WITH COLUMN WISE FOREIGN KEY:
+
+CREATE TABLE EMP_NEW(
+EMP_ID       NUMBER(6) NOT NULL,
+DEPT_ID	     VARCHAR2(8), FOREIGN KEY(DEPT_ID) REFERENCES DEPT_NEW(DEPT_ID), 
+EMP_SALARY   NUMBER(8,2),
+LOCATION     VARCHAR2(15));
+
+Table created.
+----------------------------------------------------------------------------
+TASK 5:
+
+CREATING TABLE WITH TABLE WISE FOREGIN KEY USING CONSTRAINT NAME:
+
+CREATE TABLE EMP_NEW(
+EMP_ID       NUMBER(6) NOT NULL,
+DEPT_ID	     VARCHAR2(8), 
+EMP_SALARY   NUMBER(8,2),
+LOCATION     VARCHAR2(15),
+CONSTRAINT EMPNEW_FK FOREIGN KEY(DEPT_ID) REFERENCES DEPT_NEW(DEPT_ID)
+);
+
+Table created.
+
+----------------------------------------------------------------------------
+TASK 6:
+
+CREATING TABLE WITH TABLE WISE FOREGIN KEY WITHOUT CONSTRAINT NAME:
+
+CREATE TABLE EMP_NEW(
+EMP_ID       NUMBER(6) NOT NULL,
+DEPT_ID	     VARCHAR2(8), 
+EMP_SALARY   NUMBER(8,2),
+LOCATION     VARCHAR2(15),
+CONSTRAINT  FOREIGN KEY(DEPT_ID) REFERENCES DEPT_NEW(DEPT_ID)
+);
+
+ERROR:
+
+CONSTRAINT  FOREIGN KEY(DEPT_ID) REFERENCES DEPT_NEW(DEPT_ID)
+                       *
+ERROR at line 6:
+ORA-00902: invalid datatype
+------------------------------------------------------------------
+TASK 7:
+
+ADDING FOREGIN KEY IN EXIS
+TING TABLE:
+
+CREATE TABLE EMP_NEW(
+EMP_ID       NUMBER(6),
+DEPT_ID	     VARCHAR2(8), 
+EMP_SALARY   NUMBER(8,2),
+LOCATION     VARCHAR2(15));
+
+Table created.
+
+ALTER TABLE EMP_NEW
+MODIFY FOREIGN KEY(DEPT_ID) REFERENCES DEPT_NEW(DEPT_ID);
+
+Table altered.
+----------------------------------------------------------------
+
+TASK 7
+
+ADDING PRIMARY KEY IN EXISTING TABLE WITH WITH NULL VALUES:
+
+    EMP_ID DEPT_ID  EMP_SALARY LOCATION
+---------- -------- ---------- ---------------
+      1101 1011          30000 PONDY
+     11012 1022           4000 VILLUPURAM
+           1033          50000 PONDY
+
+ALTER TABLE EMP_NEW
+MODIFY EMP_ID NUMBER(6) PRIMARY KEY;
+
+ERROR:
+
+MODIFY EMP_ID NUMBER(6) PRIMARY KEY
+       *
+ERROR at line 2:
+ORA-01449: column contains NULL values; cannot alter to NOT NULL
+----------------------------------------------------------------
+REMOVING CONSTRAINT WITH TABLE WISE:
+
+CREATE TABLE DEPT_NEW1(
+DEPT_ID      VARCHAR2(8),
+DEPT_NAME    VARCHAR2(15) NOT NULL,
+DEPT_LID     VARCHAR2(6),
+CONSTRAINT DPTNEW_PK PRIMARY KEY(DEPT_ID));
+
+ALTER TABLE DEPT_NEW1 
+DROP CONSTRAINT DPTNEW_PK;
+
+Table altered.
+----------------------------------------------------------------
+REMOVING CONSTRAINT WITH COLUMN WISE:
+
+CREATE TABLE DEPT_NEW(
+DEPT_ID      VARCHAR2(8) PRIMARY KEY,
+DEPT_NAME    VARCHAR2(15) NOT NULL,
+DEPT_LID     VARCHAR2(6));
+
+ALTER TABLE DEPT_NEW 
+DROP CONSTRAINT DEPT_ID;
+========AND=============
+ALTER TABLE DEPT_NEW 
+DROP CONSTRAINT INDEX DEPT_ID;
+
+ERROR
+
+ERROR at line 2:
+ORA-02443: Cannot drop constraint  - nonexistent constraint
+
+INSERT INTO EMP_NEW(DEPT_ID,EMP_SALARY,LOCATION)
+VALUES ('&DEPTID',&SALARY,'&LOCATION');

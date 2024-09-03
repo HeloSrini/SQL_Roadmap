@@ -1,0 +1,159 @@
+1.Write an oracle SQL query to find employees who earn more in FINANCE department?
+
+CREATE VIEW fin
+AS 
+SELECT  emp_id, emp_name, d.dept_id, dept_name, gender, dob, doj, basic_sal, designation
+FROM department_hp d,employee_hp e
+WHERE d.dept_id = e.dept_id;
+
+View created.
+
+SELECT emp_id, emp_name, dept_id, dept_name, basic_sal
+FROM fin
+WHERE dept_name = 'FINANCE'
+AND basic_sal = (SELECT MAX(basic_sal) FROM fin 
+WHERE dept_name = 'FINANCE');
+
+
+  EMP_ID EMP_NAME           DEPT_ID DEPT_NAME   BASIC_SAL
+-------- --------------- ---------- ---------- ----------
+    2005 SRIDEVI                120 FINANCE         75000
+
+_______________________________________________________________________________________________________________________________________________
+
+2.Write  an oracle SQL query to get the date and time of employee joining who earn more in SALES department?
+
+SELECT emp_id, emp_name, dept_id, dept_name, TO_CHAR(doj,'DD-MON-YY HH:MI:SS') "TIME" ,basic_sal
+FROM fin 
+WHERE dept_name = 'SALES'
+AND basic_sal = (SELECT MAX(basic_sal) FROM fin 
+WHERE dept_name = 'SALES');
+
+  EMP_ID EMP_NAME           DEPT_ID DEPT_NAME  TIME                         BASIC_SAL
+-------- --------------- ---------- ---------- --------------------------- ----------
+    2013 BALAJI                 140 SALES      30-OCT-10 12:00:00               75000
+
+_______________________________________________________________________________________________________________________________________________
+
+3.How would you update the Invoice Lines table to set Unit Price increased by 10 percent
+for customer 'C1006' which item  have Inv.Qty  greater then 35?
+
+UPDATE sales_inv_ln_hp
+SET sil_unit_price = sil_unit_price+ (sil_unit_price*10/100)
+WHERE sil_inv_qty > 35
+AND sil_inv_no IN (SELECT sih_inv_no FROM sales_inv_hdr_hp
+WHERE sih_cust_id = 'C1003');
+
+4 rows updated.
+
+_______________________________________________________________________________________________________________________________________________
+
+4. update customer 'C1001' to 'C1004' in Invoice table which invoice done in feb ?
+
+UPDATE sales_inv_hdr_hp 	
+SET sih_cust_id = 'C1004'
+WHERE TO_CHAR(sih_inv_date,'MON') = 'FEB'
+AND sih_cust_id = 'C1001' ;
+
+1 row updated.
+
+_______________________________________________________________________________________________________________________________________________
+
+5. How would you update the Invoice Lines table to set Unit Price add 100 which customer in PUDUCHERRY ?
+
+UPDATE sales_inv_ln_hp
+SET sil_unit_price = sil_unit_price+ 100
+WHERE sil_inv_no IN
+(select sih_inv_no FROM sales_inv_hdr_hp
+WHERE sih_cust_id IN (SELECT cust_id FROM cust_master_hp 
+WHERE city_name = 'PUDUCHERRY'));
+
+
+5 rows updated.
+
+_______________________________________________________________________________________________________________________________________________
+
+6. Need to remove  Invoice Lines which  Inv.Qty  greater then 38 in invoice 2324-002?
+
+DELETE FROM sales_inv_ln_hp
+WHERE sil_inv_qty > 38
+AND sil_inv_no = '2324-002';
+
+2 rows deleted.
+
+_______________________________________________________________________________________________________________________________________________
+
+
+7. Add 1 mark to science in student table who score grater then 90 in maths and neglate centum in science ?
+
+UPDATE std_hp 
+SET science = science + 1
+WHERE maths > 90
+AND science <100;
+
+5 rows updated.
+
+_______________________________________________________________________________________________________________________________________________
+
+8. Add  3 mark to maths in student table who score grater then 80 in tamil and english  and neglate centum in maths ?
+
+UPDATE std_hp
+SET maths = (DECODE(maths,97,maths+3,98,maths+2,99,maths+1,maths+3))
+WHERE tamil > 80
+AND english > 80
+AND maths < 100;
+
+7 rows updated.
+
+_______________________________________________________________________________________________________________________________________________
+
+9. Add new column as status in student table and update status pass total mark who score more then 400 others mention as fail ?
+
+ALTER TABLE std_hp ADD result VARCHAR2(7); 
+
+UPDATE std_hp 
+SET result = (CASE WHEN (tamil+english+maths+science+social) > 400 THEN 'pass'
+ELSE 'fail' END);
+
+13 rows updated.
+
+
+    REG_NO STD_NAME       DOB       SEX         TAMIL    ENGLISH    SCIENCE      MATHS     SOCIAL RESULT
+---------- -------------- --------- ------ ---------- ---------- ---------- ---------- ---------- --
+      1001 Anand          15-FEB-01 Male           95         95         96         97         98 pass
+      1002 Vidyasagar     20-MAR-02 Male           92         91        100         86         77 pass
+      1003 Sahish         10-SEP-02 Male           98         90         95         87         88 pass
+      1004 Mohan          11-AUG-02 Male           98        100         98         87         88 pass
+      1005 Thanish        12-MAY-02 Male           90         98         90         87        100 pass
+      1006 Sana           11-APR-02 Female        100         90        100        100         98 pass
+      1007 Shalini        12-MAY-01 Female         97         90         98        100        100 pass
+      1008 Priyadarshini  16-JUN-02 Female         99         99        100        100         99 pass
+      1009 Ahmed          17-JUL-02 Male           99        100         99        100         98 pass
+      1010 Sharmila       18-AUG-02 Female        100         89         96         98         90 pass
+      1011 Sugana         15-AUG-02 Female         97         89         90         97         89 pass
+      1012 Parvathi       16-FEB-02 Female         50         55         45         56         76 fail
+      1013 Saravanan      17-JAN-01 Male           70         76         67         89         77 fail
+
+13 rows selected.
+
+
+_______________________________________________________________________________________________________________________________________________
+
+10. write query  who score  centum more then two subject?
+
+SELECT std_name, tamil+english+maths+science+social "NO OF CENTUM" FROM (SELECT std_name, COUNT(CASE WHEN tamil = 100 THEN 1 ELSE NUll END) tamil,
+		COUNT(CASE WHEN english = 100 THEN 1 ELSE NUll END) english,
+		COUNT(CASE WHEN maths = 100 THEN 1 ELSE NUll END) maths,
+		COUNT(CASE WHEN science = 100 THEN 1 ELSE NUll END) science,
+		COUNT(CASE WHEN social = 100 THEN 1 ELSE NUll END ) social
+FROM std_hp 
+GROUP BY std_name)
+WHERE tamil+english+maths+science+social > 2;
+
+
+STD_NAME       NO OF CENTUM
+-------------- ------------
+Sana                      3
+
+
+_______________________________________________________________________________________________________________________________________________

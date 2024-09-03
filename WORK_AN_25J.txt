@@ -1,0 +1,343 @@
+SQL>  select abs(5), abs(-5), abs(0), abs(null) from dual;
+
+    ABS(5)    ABS(-5)     ABS(0)  ABS(NULL)
+---------- ---------- ---------- ----------
+         5          5          0
+
+SQL>  select sign(5), sign(-5), sign(0), sign(null) from dual;
+
+   SIGN(5)   SIGN(-5)    SIGN(0) SIGN(NULL)
+---------- ---------- ---------- ----------
+         1         -1          0
+
+SQL>  select sqrt(4), sqrt(0), sqrt(null), sqrt(1) from dual;
+
+   SQRT(4)    SQRT(0) SQRT(NULL)    SQRT(1)
+---------- ---------- ---------- ----------
+         2          0                     1
+
+SQL> select mod(7,4), mod(1,5), mod(null,null), mod(0,0), mod(-7,4) 
+
+  MOD(7,4)   MOD(1,5) MOD(NULL,NULL)   MOD(0,0)  MOD(-7,4)
+---------- ---------- -------------- ---------- ----------
+         3          1                         0         -3
+
+SQL> SELECT NVL(SALARY,200) FROM EMPS;
+
+NVL(SALARY,200)
+---------------
+          24001
+          25001
+          23001
+          25001
+          23001
+          22001
+
+6 rows selected.
+
+SQL> SELECT NVL(COUNT) FROM DUAL;
+SELECT NVL(COUNT) FROM DUAL
+       *
+ERROR at line 1:
+ORA-00909: invalid number of arguments
+
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1* SELECT NVL(COUNT,1) FROM DUAL
+SQL> /
+SELECT NVL(COUNT,1) FROM DUAL
+           *
+ERROR at line 1:
+ORA-00904: "COUNT": invalid identifier
+
+
+SQL>  select nvl(1,2), nvl(2,3), nvl(4,3), nvl(5,4) from dual;
+
+  NVL(1,2)   NVL(2,3)   NVL(4,3)   NVL(5,4)
+---------- ---------- ---------- ----------
+         1          2          4          5
+
+SQL> select power(2,5), power(0,0), power(1,1), power(null,null), po
+  2   dual;
+
+POWER(2,5) POWER(0,0) POWER(1,1) POWER(NULL,NULL) POWER(2,-5)
+---------- ---------- ---------- ---------------- -----------
+        32          1          1                       .03125
+
+SQL> select log(10,100), log(10,2), log(10,1), log(10,null) from dua
+
+LOG(10,100)  LOG(10,2)  LOG(10,1) LOG(10,NULL)
+----------- ---------- ---------- ------------
+          2 .301029996          0
+
+SQL> SELECT 1561.75 AS "Number", CEIL(1561.75)
+  2  FROM dual;
+
+    Number CEIL(1561.75)
+---------- -------------
+   1561.75          1562
+
+SQL> select round(-123,0), round(-123,-1),round(-123,-2) from dual;
+
+ROUND(-123,0) ROUND(-123,-1) ROUND(-123,-2)
+------------- -------------- --------------
+         -123           -120           -100
+
+SQL> /
+
+ROUND(-123,0) ROUND(-123,-1) ROUND(-123,-2)
+------------- -------------- --------------
+         -123           -120           -100
+
+SQL> /
+
+ROUND(-123,0) ROUND(-123,-1) ROUND(-123,-2)
+------------- -------------- --------------
+         -123           -120           -100
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select round(-123,0), round(-123,-1),round(-123,-2) from dual
+SQL> /
+
+ROUND(-123,0) ROUND(-123,-1) ROUND(-123,-2)
+------------- -------------- --------------
+         -123           -120           -100
+
+SQL> select trunc(-123,0), trunc(-123,1), trunc(-123,2) from dual;
+
+TRUNC(-123,0) TRUNC(-123,1) TRUNC(-123,2)
+------------- ------------- -------------
+         -123          -123          -123
+
+SQL> select bitand(2,3), bitand(0,0), bitand(1,1), bitand(null,null)
+  2   dual;
+
+BITAND(2,3) BITAND(0,0) BITAND(1,1) BITAND(NULL,NULL) BITAND(-2,-3)
+----------- ----------- ----------- ----------------- -------------
+          2           0           1                              -4
+
+SQL> select greatest(1, 2, 3), greatest(-1, -2, -3) from dual;
+
+GREATEST(1,2,3) GREATEST(-1,-2,-3)
+--------------- ------------------
+              3                 -1
+
+SQL>  select greatest(1, 2, null) from dual;
+
+GREATEST(1,2,NULL)
+------------------
+
+
+SQL> select ltrim('computer','co'), ltrim('computer','com') from dua
+
+LTRIM('COMPUTER',' LTRIM('COMPUTER
+------------------ ---------------
+mputer             puter
+
+SQL>  select ltrim('computer','puter'), ltrim('computer','omputer') 
+
+LTRIM('COMPUTER','PUTER' LTRIM('COMPUTER','OMPUTE
+------------------------ ------------------------
+computer                 computer
+
+SQL> select translate('srini','i','@') from dual;
+
+TRANSLATE('SRIN
+---------------
+sr@n@
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select translate('srini','i','@') from dual
+SQL> 
+SQL> /
+
+TRANSLATE('SRIN
+---------------
+sr@n@
+
+SQL> /
+
+TRANSLATE('SRIN
+---------------
+sr@n@
+
+SQL> select replace('srini','i',''@')
+  2  /
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select replace('srini','i',''@')
+SQL> /
+ERROR:
+ORA-01756: quoted string not properly terminated
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select replace('srini','i','@')
+SQL> /
+select replace('srini','i','@')
+                              *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select replace('srini','i','@')from dual
+  2  /
+
+REPLACE('SRINI'
+---------------
+sr@n@
+
+SQL> select replace ('srinivasan','in','@#') from dual;
+
+REPLACE('SRINIVASAN','IN','@#'
+------------------------------
+sr@#ivasan
+
+SQL> select replace('roadmap','ad','@#') from dual;
+
+REPLACE('ROADMAP','AD
+---------------------
+ro@#map
+
+SQL> 
+SQL> select translate('roadmap','ap','ee') from dual;
+
+TRANSLATE('ROADMAP','
+---------------------
+roedmee
+
+SQL> select * from emp where soundex(ename) = soundex('SMIT');
+select * from emp where soundex(ename) = soundex('SMIT')
+                                *
+ERROR at line 1:
+ORA-00904: "ENAME": invalid identifier
+
+
+SQL>  select concat('computer',' operator') from dual;
+
+CONCAT('COMPUTER','OPERATOR')
+---------------------------------------------------
+computer operator
+
+SQL> select 'srini'||'vasan' from dual;
+
+'SRINI'||'VASAN'
+------------------------------
+srinivasan
+
+SQL> select concat('srini','vasam') from dual;
+
+CONCAT('SRINI','VASAM')
+------------------------------
+srinivasam
+
+SQL> select ascii('a') from dual;
+
+ASCII('A')
+----------
+        97
+
+SQL> select ascii('srini') from dual;
+
+ASCII('SRINI')
+--------------
+           115
+
+SQL> select chr('srini') from dual;
+select chr('srini') from dual
+           *
+ERROR at line 1:
+ORA-01722: invalid number
+
+
+SQL> select substr('srinivasan',2) from dual;
+
+SUBSTR('SRINIVASAN',2)
+---------------------------
+rinivasan
+
+SQL> 
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select substr('srinivasan',2,5) from dual
+SQL> /
+
+SUBSTR('SRINIVA
+---------------
+riniv
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select substr('srinivasan',-2) from dual
+SQL> /
+
+SUBSTR
+------
+an
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select substr('srinivasan',-2,-6) from dual
+SQL> /
+
+S
+-
+
+
+SQL> select trunc(to_date('26-dec-2006'),day)from dual;
+select trunc(to_date('26-dec-2006'),day)from dual
+                                    *
+ERROR at line 1:
+ORA-00904: "DAY": invalid identifier
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select trunc(to_date('26-dec-2006'),'day')from dual
+SQL> /
+
+TRUNC(TO_DATE('
+---------------
+24-DEC-06
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select trunc(to_date('29-dec-2006'),'day')from dual
+SQL> /
+
+TRUNC(TO_DATE('
+---------------
+24-DEC-06
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select trunc(to_date('30-dec-2006'),'day')from dual
+SQL> /
+
+TRUNC(TO_DATE('
+---------------
+24-DEC-06
+
+SQL> 
